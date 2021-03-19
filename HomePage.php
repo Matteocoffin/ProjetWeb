@@ -40,7 +40,7 @@
         <table class="table table-light">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Evaluation</th>
                     <th scope="col">Company</th>
                     <th scope="col">Compétences</th>
