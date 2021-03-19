@@ -17,6 +17,26 @@
     </div>
 
     <div class="container" style='margin-top: 5%;'>
+        <form>
+            <div class='row'>
+                <div class='col-md-2'>
+                    <label for="region">Choix de la région?</label>
+                    <input class="form-control" id="region" type="text" placeholder="Search..">
+                </div>
+                <div class='col-md-2'>
+                    <label for="Competence">Choix de la competence?</label>
+                    <input class="form-control" id="Competence" type="text" placeholder="Search..">
+                </div>
+                <div class='col-md-2'>
+                    <label for="Entreprise">Choix de l'entreprise?</label>
+                    <input class="form-control" id="Entreprise" type="text" placeholder="Search..">
+                </div>
+                <div class='col-md-1'>
+                    <label for="Entreprise">Filtre :</label>
+                    <button type="button" class="btn btn-dark">Valider</button>
+                </div>
+            </div>
+        </form>
         <table class="table table-light">
             <thead>
                 <tr>
@@ -67,29 +87,7 @@
     <div class='d-flex justify-content-center' style='margin-top: 5%;'>
         <button type="button" class="btn btn-dark">Plus d'options</button>
     </div>
-    <div class="modal-dialog modal-dialog-centered">
-    <div class="modal fade" id="Evaluate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Evaluer</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style='margin-left:7%;'>
-                    <i class="far fa-star fa-4x"></i>
-                    <i class="far fa-star fa-4x"></i>
-                    <i class="far fa-star fa-4x"></i>
-                    <i class="far fa-star fa-4x"></i>
-                    <i class="far fa-star fa-4x"></i>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
-                    <button type="button" class="btn btn-primary">Evaluer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+    <?php include('Evaluate.php')?>
 
     <?php include('Footer.php') ?>
     </body>

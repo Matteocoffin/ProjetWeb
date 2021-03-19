@@ -67,6 +67,6 @@
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </div>
     </form>
-    <?php include('Footer.php') ?>
-    </body>
-</html>
+        <?php include('Footer.php') ?>
+        </body>
+    </html>

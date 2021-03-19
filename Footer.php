@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <body>
-    <footer class="bg-dark text-center text-white" style='margin-top: 4%;'>
+    <footer class="bg-dark text-center text-white" style="position: fixed; left: 0; bottom: 0; width: 100%;">
         <!-- Grid container -->
         <div class="container p-4 pb-0">
             <!-- Section: Social media -->
