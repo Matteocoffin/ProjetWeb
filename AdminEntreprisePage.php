@@ -6,7 +6,7 @@
     <body>
     <?php include('navbar.php') ?>
     <div class='text-center' style='margin-top: 3%;'>
-        <h1>Compte :</h1>
+        <h1>Entreprise :</h1>
         <p>Entrez l'ID du profil à modifié puis entrez mes nouvelles valeurs</p>
     </div>
     <div class='container'>
@@ -28,53 +28,43 @@
                         </div>
                     </div>
                     <div class='col-md-2'>
-                            <label for="ID">ID</label>
-                            <input class="form-control" id="ID" type="text" placeholder="ID">
+                        <label for="ID">ID</label>
+                        <input class="form-control" id="ID" type="text" placeholder="ID">
                     </div>
                     <div class='col-md-2'>
-                            <label for="Nom">Nom</label>
-                            <input class="form-control" id="Nom" type="text" placeholder="Nom">
+                        <label for="NomEntreprise">Nom Entreprise</label>
+                        <input class="form-control" id="NomEntreprise" type="text" placeholder="Nom">
                     </div>
                     <div class='col-md-2'>
-                            <label for="Prenom">Prénom</label>
-                            <input class="form-control" id="Prenom" type="text" placeholder="Prénom">
+                        <label for="EmailEntreprise">Email Entreprise</label>
+                        <input class="form-control" id="EmailEntreprise" type="email" placeholder="email">
                     </div>
                     <div class='col-md-2'>
-                            <label for="Email">Email</label>
-                            <input class="form-control" id="Email" type="email" placeholder="email">
+                        <label for="EmailEntreprise">Secteur d'activité</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Secteur --> choix</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                     </div>
                 </div>
-                <div class='row'>
-                    <div class='col-md-2'>
-                        <label for="mdp">Mot de passe</label>
-                        <input class="form-control" id="mdp" type="password" placeholder="password">
+                <div class='row' style='margin-top:2%;'>
+                    <div class='col-md-3'>
+                        <label for="Adresse">Adresse</label>
+                        <input class="form-control" id="Adresse" type="text" placeholder="Adresse">
                     </div>
                     <div class='col-md-2'>
-                        <label for="Centre">Centre</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Centre --> choix</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <label for="Ville">Ville</label>
+                        <input class="form-control" id="Ville" type="text" placeholder="Ville">
                     </div>
                     <div class='col-md-2'>
-                        <label for="Promotion">Promotion</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Promotion --> choix</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
+                        <label for="Region">Région</label>
+                        <input class="form-control" id="Region" type="text" placeholder="Région">
                     </div>
-                    <div class='col-md-2'>
-                        <label for="role">Rôle</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Rôle --> choix</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                    <div class='col-md-3'>
+                        <label for="nbCesi">Nombre de stagiaires CESI</label>
+                        <input class="form-control" id="nbCesi" type="text" placeholder="nombre">
                     </div>
                 </div>
                 <div class='row'>
@@ -83,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            <div class='col-md-1' >
+            <div class='col-md-1'>
             </div>
             <div class='col-md-3' style='background-color:lightgray; padding: 1em;'>
                 <div class='text-center'>
@@ -91,21 +81,29 @@
                     <input class="form-control" id="SuppID" type="text" placeholder="ID" style='width:20%; margin-left:40%;margin-top:5%;'>
                 </div>
                 <div class='text-center' style='margin-top: 5%;'>
-                        <button type="submit" class="btn btn-dark">Supprimer</button>
+                    <button type="submit" class="btn btn-dark">Supprimer</button>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     <div class='container' style='margin-top:5%;'>
         <form>
             <div class='row'>
                 <div class='col-md-2'>
-                    <label for="ID">choix ID?</label>
+                    <label for="ID">Choix de l'id?</label>
                     <input class="form-control" id="ID" type="text" placeholder="Search..">
                 </div>
                 <div class='col-md-2'>
-                    <label for="type">Choix du type?</label>
-                    <input class="form-control" id="type" type="text" placeholder="Search..">
+                    <label for="region">Choix de la région?</label>
+                    <input class="form-control" id="region" type="text" placeholder="Search..">
+                </div>
+                <div class='col-md-2'>
+                    <label for="Competence">Choix de la competence?</label>
+                    <input class="form-control" id="Competence" type="text" placeholder="Search..">
+                </div>
+                <div class='col-md-2'>
+                    <label for="Entreprise">Choix de l'entreprise?</label>
+                    <input class="form-control" id="Entreprise" type="text" placeholder="Search..">
                 </div>
                 <div class='col-md-1'>
                     <label for="Entreprise">Filtre :</label>
@@ -117,9 +115,10 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prenom</th>
-                    <th scope="col">Type</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Compétences</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Location</th>
                 </tr>
             </thead>
             <tbody>
@@ -127,18 +126,21 @@
                 <th scope="row">1</th>
                 <td>Otto</td>
                 <td>@mdo</td>
+                <td>@mdo</td>
                 <td>@mdo</td></td>
             </tr>
             <tr>
                 <th scope="row">2</th>
                 <td>Thornton</td>
                 <td>@fat</td>
+                <td>@mdo</td>
                 <td>@mdo</td></td>
             </tr>
             <tr>
                 <th scope="row">3</th>
                 <td>the Bird</td>
                 <td>@twitter</td>
+                <td>@mdo</td>
                 <td>@mdo</td></td>
             </tr>
             </tbody>
