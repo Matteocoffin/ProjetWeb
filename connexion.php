@@ -13,12 +13,12 @@
             </div>
             <div class="container" style='margin-top: 5%;'>
                 <div class="row justify-content-center">
-                    <div class="col-md-4">
-                        <label for="Login"><B> Nom de compte :</B></label>
+                    <div class="col-md-3">
+                        <label for="Login"><B>&nbsp;Nom de compte :</B></label>
                         <input type="text" class="form-control" id="Login" placeholder="ex : CMattéo">
                     </div>
-                    <div class="col-md-4">
-                        <label for="Password"><B> Mot de passe :</B></label>
+                    <div class="col-md-3">
+                        <label for="Password"><B>&nbsp;Mot de passe :</B></label>
                         <input type="password" class="form-control" id="Password">
                     </div>    
                 </div>
