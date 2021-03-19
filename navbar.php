@@ -6,7 +6,7 @@
     <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#"><img src="image/log.png" alt="" width="50" height="50"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,10 +25,10 @@
                         <a class="nav-link" href="#">S'INCRIRE</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CONNEXION</a>
+                        <a class="nav-link" href="connexion.php">CONNEXION</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">WISHLIST</a>
+                        <a class="nav-link" href="WishListPage.php">WISHLIST</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="ProfilPage.php">PROFIL</a>
@@ -40,10 +40,10 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">OFFRE</a></li>
                             <li><a class="dropdown-item" href="#">ENTREPRISE</a></li>
-                            <li><a class="dropdown-item" href="#">COMPTE</a></li>
+                            <li><a class="dropdown-item" href="AdminComptePage.php">COMPTE</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">STAT ETUDIANT</a></li>
-                            <li><a class="dropdown-item" href="#">STAT ENTREPRISE/OFFRE</a></li>
+                            <li><a class="dropdown-item" href="StatistiquePage.php">STAT ENTREPRISE/OFFRE</a></li>
                         </ul>
                     </li>
                 </ul>
