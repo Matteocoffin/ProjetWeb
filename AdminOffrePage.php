@@ -1,13 +1,12 @@
 <?php include('Bootstrap.php') ?>
 
-
 <!DOCTYPE html>
 <html>
     <body>
     <?php include('navbar.php') ?>
     <div class='text-center' style='margin-top: 3%;'>
-        <h1>Entreprise :</h1>
-        <p>Entrez l'ID de l'entreprise à modifié puis entrez mes nouvelles valeurs</p>
+        <h1>Offre :</h1>
+        <p>Entrez l'ID de l'offre à modifié puis entrez mes nouvelles valeurs</p>
     </div>
     <div class='container'>
         <div class='row' style='margin-left:1%; margin-top: 3%;'>
@@ -32,39 +31,48 @@
                         <input class="form-control" id="ID" type="text" placeholder="ID">
                     </div>
                     <div class='col-md-2'>
-                        <label for="NomEntreprise">Nom Entreprise</label>
-                        <input class="form-control" id="NomEntreprise" type="text" placeholder="Nom">
-                    </div>
-                    <div class='col-md-2'>
-                        <label for="EmailEntreprise">Email Entreprise</label>
-                        <input class="form-control" id="EmailEntreprise" type="email" placeholder="email">
-                    </div>
-                    <div class='col-md-2'>
-                        <label for="Secteur">Secteur d'activité</label>
+                        <label for="Entreprise">Entreprise</label>
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>Secteur --> choix</option>
+                            <option selected>Entreprise --> choix</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                         </select>
                     </div>
+                    <div class='col-md-6'>
+                        <label for="Description">Description</label>
+                        <textarea class="form-control" id="Description" rows="3" placeholder="Description"></textarea>
+                    </div>
                 </div>
-                <div class='row' style='margin-top:2%;'>
-                    <div class='col-md-3'>
-                        <label for="Adresse">Adresse</label>
-                        <input class="form-control" id="Adresse" type="text" placeholder="Adresse">
-                    </div>
+                <div class='row'>
                     <div class='col-md-2'>
-                        <label for="Ville">Ville</label>
-                        <input class="form-control" id="Ville" type="text" placeholder="Ville">
-                    </div>
-                    <div class='col-md-2'>
-                        <label for="Region">Région</label>
-                        <input class="form-control" id="Region" type="text" placeholder="Région">
+                        <select name="competence[]" id="competence" multiple="multiple">
+                            <option value="php">php</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="java">Java</option>
+                            <option value="sql">SQL</option>
+                            <option value="jquery">Jquery</option>
+                            <option value=".net">.Net</option>
+                        </select>
                     </div>
                     <div class='col-md-3'>
-                        <label for="nbCesi">Nombre de stagiaires CESI</label>
-                        <input class="form-control" id="nbCesi" type="text" placeholder="nombre">
+                        <label for="remuneration">Rémunération</label>
+                        <input class="form-control" id="remuneration" type="text" placeholder="Rémunération">
+                    </div>
+                    <div class='col-md-3'>
+                        <label for="nbposte">Nombre de poste</label>
+                        <input class="form-control" id="nbposte" type="text" placeholder="Nombre de poste">
+                    </div>
+                    
+                </div>
+                <div class='row'>
+                    <div class='col-md-4'>
+                        <label for="dateDebut">Date de debut de stage</label>
+                        <input class="form-control" id="dateDebut" type="date" placeholder="Date de debut de stage">
+                    </div>
+                    <div class='col-md-3'>
+                        <label for="dateFin">Date de fin de stage</label>
+                        <input class="form-control" id="dateFin" type="date" placeholder="Date de fin de stage">
                     </div>
                 </div>
                 <div class='row'>
@@ -76,7 +84,7 @@
             <div class='col-md-1'>
             </div>
             <div class='col-md-3' style='background-color:lightgray; padding: 1em;'>
-                <div class='text-center'>
+                <div class='text-center' style='margin-top:20%;'>
                     <label for="SuppID"><strong>ID à Supprimer</strong></label>
                     <input class="form-control" id="SuppID" type="text" placeholder="ID" style='width:20%; margin-left:40%;margin-top:5%;'>
                 </div>
@@ -94,16 +102,12 @@
                     <input class="form-control" id="ID" type="text" placeholder="Search..">
                 </div>
                 <div class='col-md-2'>
-                    <label for="region">Choix de la région?</label>
-                    <input class="form-control" id="region" type="text" placeholder="Search..">
+                    <label for="entreprise">Choix de l'entreprise?</label>
+                    <input class="form-control" id="entreprise" type="text" placeholder="Search..">
                 </div>
                 <div class='col-md-2'>
-                    <label for="Competence">Choix de la competence?</label>
+                    <label for="Competence">Choix de la compétence?</label>
                     <input class="form-control" id="Competence" type="text" placeholder="Search..">
-                </div>
-                <div class='col-md-2'>
-                    <label for="Entreprise">Choix de l'entreprise?</label>
-                    <input class="form-control" id="Entreprise" type="text" placeholder="Search..">
                 </div>
                 <div class='col-md-1'>
                     <label for="Entreprise">Filtre :</label>
@@ -117,7 +121,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Company</th>
                     <th scope="col">Compétences</th>
-                    <th scope="col">Location</th>
+                    <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
