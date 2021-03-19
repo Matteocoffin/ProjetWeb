@@ -33,33 +33,33 @@
             <tbody>
             <tr>
                 <th scope="row">1</th>
-                <td>Mark</td>
+                <td><i class="far fa-heart fa-2x" data-bs-toggle="modal" data-bs-target="#Evaluate"></i></td>
                 <td>Otto</td>
                 <td>@mdo</td>
                 <td>@mdo</td>
                 <td>@mdo</td>
                 <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-                <td><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></td>
+                <td><i class="fas fa-times fa-2x"></i></td>
             </tr>
             <tr>
                 <th scope="row">2</th>
-                <td>Jacob</td>
+                <td><i class="far fa-heart fa-2x" data-bs-toggle="modal" data-bs-target="#Evaluate"></i></td>
                 <td>Thornton</td>
                 <td>@fat</td>
                 <td>@mdo</td>
                 <td>@mdo</td>
                 <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-                <td><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></td>
+                <td><i class="fas fa-times fa-2x"></i></td>
             </tr>
             <tr>
                 <th scope="row">3</th>
-                <td>Larry</td>
+                <td><i class="far fa-heart fa-2x" data-bs-toggle="modal" data-bs-target="#Evaluate"></i></td>
                 <td>the Bird</td>
                 <td>@twitter</td>
                 <td>@mdo</td>
                 <td>@mdo</td>
                 <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-                <td><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></td>
+                <td><i class="fas fa-times fa-2x"></i></td>
             </tr>
             </tbody>
         </table>
@@ -67,7 +67,29 @@
     <div class='d-flex justify-content-center' style='margin-top: 5%;'>
         <button type="button" class="btn btn-dark">Plus d'options</button>
     </div>
-    
+    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal fade" id="Evaluate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Evaluer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style='margin-left:7%;'>
+                    <i class="far fa-star fa-4x"></i>
+                    <i class="far fa-star fa-4x"></i>
+                    <i class="far fa-star fa-4x"></i>
+                    <i class="far fa-star fa-4x"></i>
+                    <i class="far fa-star fa-4x"></i>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+                    <button type="button" class="btn btn-primary">Evaluer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 
     <?php include('Footer.php') ?>
     </body>
