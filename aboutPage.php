@@ -1,6 +1,5 @@
 <?php include('Bootstrap.php') ?>
 
-
 <!DOCTYPE html>
 <html>
     <body>
