@@ -19,10 +19,10 @@
                         <a class="nav-link" href="aboutPage.php">ABOUT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CONTACT</a>
+                        <a class="nav-link" href="ContactPage.php">CONTACT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">S'INCRIRE</a>
+                        <a class="nav-link" href="InscriptionPage.php">S'INCRIRE</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="connexion.php">CONNEXION</a>
@@ -38,11 +38,12 @@
                              GESTION
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">OFFRE</a></li>
-                            <li><a class="dropdown-item" href="#">ENTREPRISE</a></li>
+                            <li><a class="dropdown-item" href="AdminOffrePage.php">OFFRE</a></li>
+                            <li><a class="dropdown-item" href="AdminEntreprisePage.php">ENTREPRISE</a></li>
                             <li><a class="dropdown-item" href="AdminComptePage.php">COMPTE</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">STAT ETUDIANT</a></li>
+                            <li><a class="dropdown-item" href="#">DROITS</a></li>
+                            <li><a class="dropdown-item" href="AvancementPage.php">STAT ETUDIANT</a></li>
                             <li><a class="dropdown-item" href="StatistiquePage.php">STAT ENTREPRISE/OFFRE</a></li>
                         </ul>
                     </li>
