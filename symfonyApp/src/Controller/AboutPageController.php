@@ -11,7 +11,7 @@ class AboutPageController extends AbstractController
 {
 
     /**
-     * @Route("/",name="About")
+     * @Route("/about",name="About")
      * @return Response
     */
     public function index(): Response
