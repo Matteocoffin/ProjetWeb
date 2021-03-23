@@ -5,12 +5,14 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Utilisateur;
+use App\Entity\Entreprise;
 
 /**
  * Offre
  *
  * @ORM\Table(name="offre", indexes={@ORM\Index(name="Offre_Utilisateur_FK", columns={"Id_Utilisateur"}), @ORM\Index(name="Offre_Entreprise0_FK", columns={"Id_Entreprise"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\OffreRepository")
  */
 class Offre
 {
@@ -98,7 +100,7 @@ class Offre
     public function __construct()
     {
         $this->idCompetences = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->setDateOffre = new \DateTime();
+        $this->dateOffre = new \DateTime();
     }
 
     public function getIdOffre(): ?int

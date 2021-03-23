@@ -1,30 +1,21 @@
-    {{form_start(form)}}
+{{form_start(form)}}
     <div class='container'>
         <div class='row' style='margin-left:1%; margin-top: 3%;'>
-            <div class='col-md-7' style='background-color:lightgray; padding: 1em;'>
+        <h3>Entreprise :</h3>
+            <div class='col-md-13' style='background-color:lightgray; padding: 1em;'>
                 <div class='row'>
-                    <div class='col-md-3'>
-                        {{form_row(form.nomEntreprise)}}
+                    <div class='col-md-6'>
+                        {{form_row(form.nomEntreprise)}}    
                     </div>
-                    <div class='col-md-3'>
+                    <div class='col-md-6'>
                         {{form_row(form.infoEmail)}}
-                    </div>
-                    <div class='col-md-3'>
-                        {{form_row(form.idSecteur)}}
                     </div>
                 </div>
                 <div class='row' style='margin-top:2%;'>
-                    <div class='col-md-3'>
+                    <div class='col-md-6'>
                         {{form_row(form.adresse)}}
                     </div>
-                    <div class='col-md-2'>
-                        {{form_row(form.idLocalite)}}
-                    </div>
-                    <div class='col-md-2'>
-                        <label for="Region">Région</label>
-                        <input class="form-control" id="Region" type="text" placeholder="Région">
-                    </div>
-                    <div class='col-md-3'>
+                    <div class='col-md-6'>
                         {{form_row(form.nbDeStagiairesCesi)}}
                     </div>
                 </div>
@@ -34,13 +25,61 @@
                     </div>
                 </div>
             </div>
-            <div class='col-md-1'>
-            </div>
-            <div class='col-md-3' style='background-color:lightgray; padding: 1em;'>
-                <div class='text-center' style='margin-top: 5%;'>
-                    <button type="submit" class="btn btn-dark">Supprimer</button>
+        </div>
+    </div>
+{{form_end(form)}}
+{{form_start(formSecteur)}}
+    <div class='container'>
+        <div class='row' style='margin-left:1%; margin-top: 3%;'>
+        <h3>Ajouter Compétences :</h3>
+            <div class='col-md-13' style='background-color:lightgray; padding: 1em;'>
+                <div class='row'>
+                    <div class='col-md-6'>
+                        {{form_row(formSecteur.idEntreprise)}}
+                    </div>
+                </div>
+                <div class='row' style='margin-top:2%;'>
+                    
+                    <div class='col-md-6'>
+                        {{form_row(formSecteur.secteurDActivite)}}
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='text-center' style='margin-top: 3%;'>
+                        <button type="submit" class="btn btn-dark">Ajouter</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    {{form_end(form)}}
+    {{form_end(formSecteur)}}
+    {{form_start(formLocalite)}}
+    <div class='container'>
+        <div class='row' style='margin-left:1%; margin-top: 3%;'>
+        <h3>Ajouter Localite :</h3>
+            <div class='col-md-13' style='background-color:lightgray; padding: 1em;'>
+                <div class='row'>
+                    <div class='col-md-6'>
+                        {{form_row(formLocalite.ville)}}
+                    </div>
+                    <div class='col-md-6'>
+                        {{form_row(formLocalite.region)}}
+                    </div>
+                </div>
+                <div class='row' style='margin-top:2%;'>
+                    <div class='col-md-6'>
+                        {{form_row(formLocalite.codePostal)}}
+                    </div>
+                    <div class='col-md-6'>
+                        {{form_row(formLocalite.idEntreprise)}}
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='text-center' style='margin-top: 3%;'>
+                        <button type="submit" class="btn btn-dark">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{form_end(formLocalite)}}

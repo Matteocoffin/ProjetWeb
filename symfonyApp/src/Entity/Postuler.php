@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Postuler
  *
  * @ORM\Table(name="postuler", indexes={@ORM\Index(name="postuler_Offre0_FK", columns={"Id_Offre"}), @ORM\Index(name="postuler_Avancement1_FK", columns={"Id_Avancement"}), @ORM\Index(name="IDX_8EC5A68D4EF6594B", columns={"Id_Utilisateur"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\PostulerRepository")
  */
 class Postuler
 {

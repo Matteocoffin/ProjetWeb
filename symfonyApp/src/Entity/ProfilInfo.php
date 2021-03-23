@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ProfilInfo
  *
  * @ORM\Table(name="profil_info", indexes={@ORM\Index(name="Profil_info_Utilisateur_FK", columns={"Id_Utilisateur"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ProfilInfoeRepository")
  */
 class ProfilInfo
 {

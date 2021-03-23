@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Entreprise;
+use App\Entity\SecteurDActivite;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -36,7 +37,16 @@ class EntrepriseRepository extends ServiceEntityRepository
                     ->getQuery()
                     ->getResult();
     }
-
+    public function FindEntreprise()
+    {
+        return $this->createQueryBuilder(alias:'c')
+                    ->join('c.idSecteur','r')
+                    ->addSelect('r')
+                    ->setMaxResults(maxResults:10)
+                    ->getQuery()
+                    ->getResult();
+    }
+    
     // /**
     //  * @return Entreprise[] Returns an array of Entreprise objects
     //  */

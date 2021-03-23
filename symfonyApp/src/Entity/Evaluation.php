@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Evaluation
  *
  * @ORM\Table(name="evaluation", indexes={@ORM\Index(name="Evaluation_Utilisateur_FK", columns={"Id_Utilisateur"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\EvaluationRepository")
  */
 class Evaluation
 {

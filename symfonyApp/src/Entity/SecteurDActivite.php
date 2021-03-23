@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * SecteurDActivite
  *
  * @ORM\Table(name="secteur_d_activite")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\SecteurRepository")
  */
 class SecteurDActivite
 {
@@ -51,6 +51,11 @@ class SecteurDActivite
     public function __construct()
     {
         $this->idEntreprise = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->secteurDActivite;
     }
 
     public function getIdSecteur(): ?int

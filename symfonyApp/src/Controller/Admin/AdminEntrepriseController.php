@@ -2,8 +2,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Entreprise;
+use App\Entity\SecteurDActivite;
+use App\Entity\Localite;
 use App\Form\EntrepriseType;
+use App\Form\SecteurType;
+use App\Form\LocaliteType;
 use App\Repository\EntrepriseRepository;
+use Container40euUzF\getSecteurTypeService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,14 +25,23 @@ class AdminEntrepriseController extends AbstractController
     {
         $this->repository = $repository;
     }
+
+
+    
     
     /**
-     * @Route("/admin", name="admin.entreprise")
+     * @Route("/admin/entreprise", name="admin.entreprise")
      * @return \Symfony\Component\httpFoundation\Response
      */
-    public function index(Request $request) 
+    public function index(Request $request, Request $requestSecteur, Request $requestLocalite) 
     {  
+        $localite = new Localite();
         $entreprise = new Entreprise();
+        $Secteur = new SecteurDActivite();
+        $formLocalite = $this->createForm(LocaliteType::class, $localite);
+        $formLocalite->handleRequest($requestLocalite);
+        $formSecteur = $this->createForm(SecteurType::class, $Secteur);
+        $formSecteur->handleRequest($requestSecteur);
         $form = $this->createForm(EntrepriseType::class, $entreprise);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -36,12 +50,24 @@ class AdminEntrepriseController extends AbstractController
             $this->em->flush();
             return $this->redirectToRoute(route: 'admin.entreprise');
         }
-        $entreprises = $this->repository->findAll();
-        return $this->render("admin/GestionEntreprise.php.twig", ['entreprises' => $entreprises, 'form'=> $form->createView()]);
+        if($formSecteur->isSubmitted() && $formSecteur->isValid()){
+            $this->em = $this->getDoctrine()->getManager();
+            $this->em->persist($Secteur);
+            $this->em->flush();
+            return $this->redirectToRoute(route: 'admin.entreprise');
+        }
+        if($formLocalite->isSubmitted() && $formLocalite->isValid()){
+            $this->em = $this->getDoctrine()->getManager();
+            $this->em->persist($localite);
+            $this->em->flush();
+            return $this->redirectToRoute(route: 'admin.entreprise');
+        }
+        $entreprises = $this->repository->FindEntreprise();
+        //dump($entreprises);
+        return $this->render("admin/GestionEntreprise.php.twig", ['entreprises' => $entreprises, 'form'=> $form->createView(),'formSecteur'=> $formSecteur->createView(), 'formLocalite'=> $formLocalite->createView()]);
     }
-
     /**
-     * @Route("/admin/{id}", name="admin.entreprise.edit", methods="GET|POST")
+     * @Route("/admin/entreprise/{id}", name="admin.entreprise.edit", methods="GET|POST")
      * @param Entreprise $entreprises
      * @param Request $request
      * @return \Symfony\Component\httpFoundation\Response
@@ -65,7 +91,7 @@ class AdminEntrepriseController extends AbstractController
         return $this->render('admin/ModifierEntreprise.php.twig', ['entreprises' => $entreprises, 'form' => $form->createView()]);
      }
      /**
-     * @Route("/admindel/{id}", name="admin.entreprise.delete", methods="DELETE")
+     * @Route("/admindel/entreprise/{id}", name="admin.entreprise.delete", methods="DELETE")
      * @param Entreprise $entreprises
      * @param Request $request
      * @return \Symfony\Component\httpFoundation\Response
@@ -85,4 +111,6 @@ class AdminEntrepriseController extends AbstractController
         }
         return $this->redirectToRoute(route: 'admin.entreprise');
     }
+
+
 }

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Localite
  *
  * @ORM\Table(name="localite")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\LocaliteRepository")
  */
 class Localite
 {
@@ -65,6 +65,11 @@ class Localite
     public function __construct()
     {
         $this->idEntreprise = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->region;
     }
 
     public function getIdLocalite(): ?int

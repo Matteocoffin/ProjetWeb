@@ -82,7 +82,10 @@ class Entreprise
         $this->idLocalite = new \Doctrine\Common\Collections\ArrayCollection();
         $this->idSecteur = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    public function __toString()
+    {
+        return $this->nomEntreprise;
+    }
     public function getIdEntreprise(): ?int
     {
         return $this->idEntreprise;

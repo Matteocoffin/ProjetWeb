@@ -2,17 +2,17 @@
 
 {% block body %}
     <div class='text-center' style='margin-top: 3%;'>
-        <h1>Entreprise :</h1>
-        {% for message in app.flashes('success') %}
+        <h1>Offres :</h1>
+    </div>
+    {% for message in app.flashes('success') %}
         <div class="container">
             <div class='alert alert-success'>
                 {{message}}
             </div>
         </div>
     {% endfor %}
-    </div>
     
-    {{ include('admin/FormEntreprise.php.twig',{form: form, button:'Créer'}) }}
+    {{ include('admin/FormOffre.php.twig',{form: form, button:'Créer'}) }}
     <div class='container' style='margin-top:5%;'>
         <form>
             <div class='row'>
@@ -42,25 +42,29 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Company</th>
-                    <th scope="col">mail</th>
-                    <th scope="col">Nombre de stagiaire CESI</th>
-                    <th scope="col">Adresse</th>
+                    <th scope="col">Entreprise</th>
+                    <th scope="col">date de debut</th>
+                    <th scope="col">date de fin</th>
+                    <th scope="col">Rémunération</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">nombre de places</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-            {% for entreprises in entreprises %}
+            {% for offre in offre %}
             <tr>
-                <th scope="row">{{entreprises.IdEntreprise}}</th>
-                <td>{{entreprises.NomEntreprise}}</td>
-                <td>{{entreprises.infoEmail}}</td>
-                <td>{{entreprises.nbDeStagiairesCesi}}</td>
-                <td>{{entreprises.Adresse}}</td>
-                <td><a href="{{path('admin.entreprise.edit',{id: entreprises.idEntreprise})}}" class="btn btn-dark">Editer</a></td>
-                <td><form method="post" action="{{path('admin.entreprise.delete',{id: entreprises.idEntreprise})}}" onsubmit="return confirm('Voulez-vous supprimer?')">
+                <th scope="row">{{offre.IdOffre}}</th>
+                <td>{{offre.idEntreprise}}</td>
+                <td>{{offre.debutstage|date('d/m/Y')}}</td>
+                <td>{{offre.finstage|date('d/m/Y')}}</td>
+                <td>{{offre.Remuneration}}</td>
+                <td>{{offre.Description}}</td>
+                <td>{{offre.Nbplace}}</td>
+                <td><a href="{{path('admin.offre.edit',{id: offre.IdOffre})}}" class="btn btn-dark">Editer</a></td>
+                <td><form method="post" action="{{path('admin.offre.delete',{id: offre.IdOffre})}}" onsubmit="return confirm('Voulez-vous supprimer?')">
                     <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ entreprises.idEntreprise)}}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ offre.IdOffre)}}">
                     <button class="btn btn-dark">Supprimer</button>
                 </form></td></td>
             </tr>

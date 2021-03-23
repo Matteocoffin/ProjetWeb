@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EntrepriseType extends AbstractType
+class EntrepriseSecteurType extends AbstractType
 {
 
 
@@ -28,12 +28,9 @@ class EntrepriseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nomEntreprise')
-            ->add('nbDeStagiairesCesi')
-            ->add('infoEmail')
-            ->add('adresse')
-            //->add('idLocalite')
-            //->add('idSecteur') 
+            ->add('idEntreprise')
+            ->add('idLocalite')
+            ->add('idSecteur') 
         ;
     }
 
