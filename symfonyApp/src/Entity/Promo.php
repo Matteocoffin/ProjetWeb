@@ -28,6 +28,11 @@ class Promo
      */
     private $promotionEcole;
 
+    public function __toString()
+    {
+        return $this->promotionEcole;
+    }
+
     public function getIdPromo(): ?int
     {
         return $this->idPromo;

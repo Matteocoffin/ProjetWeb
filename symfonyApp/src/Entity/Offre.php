@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Utilisateur;
 use App\Entity\Entreprise;
@@ -62,8 +64,8 @@ class Offre
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Description", type="string", length=50, nullable=false)
+     * @Assert\Length(min=5,max=255)
+     * @ORM\Column(name="Description", type="string", length=255, nullable=false)
      */
     private $description;
 
@@ -90,7 +92,7 @@ class Offre
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Competences", mappedBy="idOffre")
+     * @ORM\ManyToMany(targetEntity="Competences",mappedBy="idOffre")   
      */
     private $idCompetences;
 
@@ -102,6 +104,17 @@ class Offre
         $this->idCompetences = new \Doctrine\Common\Collections\ArrayCollection();
         $this->dateOffre = new \DateTime();
     }
+
+    public function __toString()
+    {
+        return $this->description;
+    }
+
+    public function getSlug(): string
+    {
+        return (new Slugify())->slugify($this->description);
+    }
+
 
     public function getIdOffre(): ?int
     {

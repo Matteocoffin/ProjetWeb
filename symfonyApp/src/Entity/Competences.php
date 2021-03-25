@@ -53,6 +53,11 @@ class Competences
         $this->idOffre = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->competences;
+    }
+
     public function getIdCompetences(): ?int
     {
         return $this->idCompetences;

@@ -1,15 +1,29 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\Utilisateur:
+            algorithm: auto
     providers:
-        users_in_memory: { memory: null }
+        from_database:
+            entity:
+                class: App\Entity\Utilisateur
+                property: login
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: true
-            lazy: true
-            provider: users_in_memory
+            logout:
+                path: /logout
+                target: /
+            #lazy: true
+            # provider: users_in_memory
+
+            form_login: 
+                login_path: login
+                check_path: login
+                provider: from_database
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -20,5 +34,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+
+
+    
+            

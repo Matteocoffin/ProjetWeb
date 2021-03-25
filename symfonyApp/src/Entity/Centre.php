@@ -28,6 +28,11 @@ class Centre
      */
     private $centre;
 
+    public function __toString()
+    {
+        return $this->centre;
+    }
+
     public function getIdCentre(): ?int
     {
         return $this->idCentre;

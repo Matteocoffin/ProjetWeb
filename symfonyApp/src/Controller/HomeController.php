@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Entreprise;
-use App\Repository\EntrepriseRepository;
+use App\Entity\Offre;
+use App\Repository\OffreRepository;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,11 +14,11 @@ class HomeController extends AbstractController
 {
 
     /**
-     * @var EntrepriseRepository    
+     * @var OffreRepository    
      */
     private $repository;
 
-    public function __construct(EntrepriseRepository $repository)
+    public function __construct(OffreRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -28,9 +28,10 @@ class HomeController extends AbstractController
     */
     public function index(): Response
     {
-        $entreprises = $this->repository->findLastest();
+        $Offre = $this->repository->findOffre();
+        dump($Offre);
         return $this->render('Pages/home.php.twig', [
-            'entreprises' => $entreprises,
+            'Offre' => $Offre,
         ]);
     }
 
@@ -39,9 +40,9 @@ class HomeController extends AbstractController
      */
     public function show($slug,$id): Response
     {
-        $entreprises = $this->repository->find($id);
+        $Offre = $this->repository->find($id);
         return $this->render('Pages/ShowOffre.php.twig', [
-            'entreprises' => $entreprises,
+            'offre' => $Offre,
         ]);
     }
 }

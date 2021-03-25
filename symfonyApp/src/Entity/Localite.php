@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -39,7 +40,7 @@ class Localite
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[0-9]{5}$/")
      * @ORM\Column(name="code_postal", type="string", length=50, nullable=false)
      */
     private $codePostal;

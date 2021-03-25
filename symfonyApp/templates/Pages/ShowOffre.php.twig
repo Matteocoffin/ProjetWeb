@@ -2,12 +2,13 @@
 
 {% block body %}
     <div class="container mt-4"> 
-        <h1>{{ entreprises.nomEntreprise }}</h1>
+        <h1>Offre de stage de {{ offre.idEntreprise }}</h1>
         <h4>Competences :</h4>
+        <p>{{offre.idCompetences[0]}}</p>
         <label for="Description">Description</label>
-        <p>offre.description | nl2br</p>
+        <p>{{offre.Description | nl2br}}</p>
         <label for="Location">Location</label>
-        <p>ssssss</p>
+        <p>{{offre.idEntreprise.adresse}} ({{offre.idEntreprise.idLocalite[0]}})</p>
         <a href="#" class="btn btn-dark">Contacter l'offre<a>
     </div>
 {% endblock %}

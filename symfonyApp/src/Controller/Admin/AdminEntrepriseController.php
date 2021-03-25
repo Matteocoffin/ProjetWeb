@@ -8,7 +8,6 @@ use App\Form\EntrepriseType;
 use App\Form\SecteurType;
 use App\Form\LocaliteType;
 use App\Repository\EntrepriseRepository;
-use Container40euUzF\getSecteurTypeService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,10 +72,14 @@ class AdminEntrepriseController extends AbstractController
      * @return \Symfony\Component\httpFoundation\Response
      */
 
-     public function edit(Entreprise $entreprises, Request $request)
+     public function edit(Entreprise $entreprises/*,Localite $localite,SecteurDActivite $Secteur*/, Request $request, Request $requestSecteur, Request $requestLocalite)
      {
         $form = $this->createForm(EntrepriseType::class, $entreprises);
         $form->handleRequest($request);
+        //$formLocalite = $this->createForm(LocaliteType::class, $localite);
+        //$formLocalite->handleRequest($requestLocalite);
+        //$formSecteur = $this->createForm(SecteurType::class, $Secteur);
+        //$formSecteur->handleRequest($requestSecteur);
 
         if($form->isSubmitted() && $form->isValid()){
             $this->em = $this->getDoctrine()->getManager();
@@ -87,8 +90,26 @@ class AdminEntrepriseController extends AbstractController
             );
             return $this->redirectToRoute(route: 'admin.entreprise');
         }
+        /*if($formLocalite->isSubmitted() && $formLocalite->isValid()){
+            $this->em = $this->getDoctrine()->getManager();
+            $this->em->flush();
+            $this->addFlash(
+            type:'success',
+            message:'Modifié avec succès'
+            );
+            return $this->redirectToRoute(route: 'admin.entreprise');
+        }*/
+        /*if($formSecteur->isSubmitted() && $formSecteur->isValid()){
+            $this->em = $this->getDoctrine()->getManager();
+            $this->em->flush();
+            $this->addFlash(
+            type:'success',
+            message:'Modifié avec succès'
+            );
+            return $this->redirectToRoute(route: 'admin.entreprise');
+        }*/
 
-        return $this->render('admin/ModifierEntreprise.php.twig', ['entreprises' => $entreprises, 'form' => $form->createView()]);
+        return $this->render('admin/ModifierEntreprise.php.twig', ['entreprises' => $entreprises, /*'formLocalite' => $formLocalite->createView(), 'formSecteur' => $formSecteur->createView(),*/ 'form' => $form->createView()]);
      }
      /**
      * @Route("/admindel/entreprise/{id}", name="admin.entreprise.delete", methods="DELETE")

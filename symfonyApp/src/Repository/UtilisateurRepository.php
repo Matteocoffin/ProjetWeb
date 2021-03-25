@@ -19,6 +19,17 @@ class UtilisateurRepository extends ServiceEntityRepository
         parent::__construct($registry, Utilisateur::class);
     }
 
+    public function FindUtilisateur()
+    {
+        return $this->createQueryBuilder(alias:'c')
+                    ->join('c.idType','r')
+                    ->join('c.idPromo','f')
+                    ->join('c.idCentre','t')
+                    ->setMaxResults(maxResults:10)
+                    ->getQuery()
+                    ->getResult();
+    }
+
     // /**
     //  * @return Utilisateur[] Returns an array of Utilisateur objects
     //  */

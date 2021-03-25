@@ -8,7 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Repository\SecteurRepository;
 use phpDocumentor\Reflection\Element;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -30,7 +30,7 @@ class EntrepriseType extends AbstractType
         $builder
             ->add('nomEntreprise')
             ->add('nbDeStagiairesCesi')
-            ->add('infoEmail')
+            ->add('infoEmail', EmailType::class)
             ->add('adresse')
             //->add('idLocalite')
             //->add('idSecteur') 

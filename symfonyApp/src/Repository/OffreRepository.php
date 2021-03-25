@@ -23,7 +23,11 @@ class OffreRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder(alias:'c')
                     ->join('c.idEntreprise','r')
+                    ->join('r.idLocalite','t')
+                    ->join('c.idCompetences','f')
+                    ->join('f.idOffre','m')
                     ->addSelect('r')
+                    ->addSelect('f')
                     ->setMaxResults(maxResults:10)
                     ->getQuery()
                     ->getResult();

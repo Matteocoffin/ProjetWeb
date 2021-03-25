@@ -27,6 +27,10 @@ class Type
      * @ORM\Column(name="Type", type="string", length=50, nullable=false)
      */
     private $type;
+    public function __toString()
+    {
+        return $this->type;
+    }
 
     public function getIdType(): ?int
     {
