@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Offre;
+use App\Entity\Search\OffreSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -28,11 +30,67 @@ class OffreRepository extends ServiceEntityRepository
                     ->join('f.idOffre','m')
                     ->addSelect('r')
                     ->addSelect('f')
-                    ->setMaxResults(maxResults:10)
                     ->getQuery()
                     ->getResult();
+    
     }
 
+    /**
+     * @return Offre[]
+     */
+
+    public function FindOffreQuery(OffreSearch $search): array
+    {
+        $query = $this->createQueryBuilder(alias:'c')
+                        ->join('c.idEntreprise','r')
+                        ->join('r.idLocalite','t')
+                        ->join('c.idCompetences','f')
+                        ->join('f.idOffre','m')
+                        ->addSelect('r')
+                        ->addSelect('f');
+        if(!empty($search->s)){
+            $query = $query
+                    ->andWhere('c.titre LIKE :s')
+                    ->setParameter('s',"%{$search->s}%");
+        }
+
+        if(!empty($search->min)){
+            $query = $query
+                    ->andWhere('c.remuneration >= :min')
+                    ->setParameter('min',"$search->min");
+        }
+        if(!empty($search->max)){
+            $query = $query
+                    ->andWhere('c.remuneration <= :max')
+                    ->setParameter('max',"$search->max");
+        }
+
+        //if(!empty($search->Searchlocalite)){
+        //    $query = $query
+        //            ->andWhere('t.idLocalite IN (:Searchlocalite)')
+        //            ->setParameter('Searchlocalite',$search->Searchlocalite);
+        //}
+
+        if(!empty($search->Searchlocalite)){
+            $query = $query
+                    ->andWhere('t.region LIKE :Searchlocalite')
+                    ->setParameter('Searchlocalite',"%{$search->Searchlocalite}%");
+        }
+
+        if(!empty($search->SearchCompetences)){
+            $query = $query
+                    ->andWhere('f.competences LIKE :SearchCompetences')
+                    ->setParameter('SearchCompetences',"%{$search->SearchCompetences}%");
+        }
+
+        if(!empty($search->SearchEntreprise)){
+            $query = $query
+                    ->andWhere('r.nomEntreprise LIKE :SearchEntreprise')
+                    ->setParameter('SearchEntreprise',"%{$search->SearchEntreprise}%");
+        }
+        return $query->getQuery()->getResult();
+    }
+    
     // /**
     //  * @return Offre[] Returns an array of Offre objects
     //  */

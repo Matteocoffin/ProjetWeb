@@ -14,36 +14,43 @@
     
     {{ include('admin/FormCompte.php.twig',{form: form, button:'Créer'}) }}
     <div class='container' style='margin-top:5%;'>
+        {{ form_start(formSearch) }}
         <form>
             <div class='row'>
                 <div class='col-md-2'>
-                    <label for="ID">Choix de l'id?</label>
-                    <input class="form-control" id="ID" type="text" placeholder="Search..">
+                    <label for="ID">Choix de l'id ?</label>
+                    {{form_row(formSearch.idSearch)}}
                 </div>
                 <div class='col-md-2'>
-                    <label for="region">Choix de la région?</label>
-                    <input class="form-control" id="region" type="text" placeholder="Search..">
+                    <label for="region">Choix du Centre ?</label>
+                    {{form_row(formSearch.SearchCentre)}}
                 </div>
                 <div class='col-md-2'>
-                    <label for="Competence">Choix de la competence?</label>
-                    <input class="form-control" id="Competence" type="text" placeholder="Search..">
+                    <label for="Competence">Choix de la Promo ?</label>
+                    {{form_row(formSearch.SearchPromo)}}
                 </div>
                 <div class='col-md-2'>
-                    <label for="Entreprise">Choix de l'entreprise?</label>
-                    <input class="form-control" id="Entreprise" type="text" placeholder="Search..">
+                    <label for="Entreprise">Choix du type ?</label>
+                    {{form_row(formSearch.SearchType)}}
+                </div>
+                <div class='col-md-2'>
+                    <label for="recherche">Recherche du login ?</label>
+                    {{form_row(formSearch.s)}}
                 </div>
                 <div class='col-md-1'>
                     <label for="Entreprise">Filtre :</label>
-                    <button type="button" class="btn btn-dark">Valider</button>
+                    <button class="btn btn-dark">Filtrer</button>
                 </div>
             </div>
         </form>
+        {{ form_end(formSearch) }}
         <table class="table table-light">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
+                    <th scope="col">Login</th>
                     <th scope="col">Email</th>
                     <th scope="col">Type</th>
                     <th scope="col">Centre</th>
@@ -57,6 +64,7 @@
                 <th scope="row">{{Utilisateur.idUtilisateur}}</th>
                 <td>{{Utilisateur.Nom}}</td>
                 <td>{{Utilisateur.Prenom}}</td>
+                <td>{{Utilisateur.login}}</td>
                 <td>{{Utilisateur.Email}}</td>
                 <td>{{Utilisateur.idType}}</td>
                 <td>{{Utilisateur.idCentre}}</td>

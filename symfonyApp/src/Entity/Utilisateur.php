@@ -51,7 +51,7 @@ class Utilisateur implements UserInterface,\Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="mdp", type="string", length=50, nullable=false)
+     * @ORM\Column(name="mdp", type="string", length=255, nullable=false)
      */
     private $mdp;
 
@@ -263,7 +263,9 @@ class Utilisateur implements UserInterface,\Serializable
      * @return string|null The encoded password if any
      */
     public function getPassword()
-    {}
+    {
+        return $this->mdp;
+    }
 
     /**
      * Returns the salt that was originally used to encode the password.
@@ -284,7 +286,7 @@ class Utilisateur implements UserInterface,\Serializable
      */
     public function getUsername()
     {
-        return ['ROLE_USER'];
+        return $this->login;
     } 
     /**
      * Removes sensitive data from the user.

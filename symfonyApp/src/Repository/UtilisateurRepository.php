@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Search\CompteSearch;
 use App\Entity\Utilisateur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -25,9 +26,45 @@ class UtilisateurRepository extends ServiceEntityRepository
                     ->join('c.idType','r')
                     ->join('c.idPromo','f')
                     ->join('c.idCentre','t')
-                    ->setMaxResults(maxResults:10)
                     ->getQuery()
                     ->getResult();
+    }
+
+    public function FindUtilisateurQuery(CompteSearch $search): array
+    {
+        $query = $this->createQueryBuilder(alias:'c')
+                    ->join('c.idType','r')
+                    ->join('c.idPromo','f')
+                    ->join('c.idCentre','t');
+        if(!empty($search->s)){
+            $query = $query
+                    ->andWhere('c.login LIKE :s')
+                    ->setParameter('s',"%{$search->s}%");
+        }
+        if(!empty($search->idSearch)){
+            $query = $query
+                    ->andWhere('c.idUtilisateur = :idSearch')
+                    ->setParameter('idSearch',$search->idSearch);
+        }
+
+        if(!empty($search->SearchType)){
+            $query = $query
+                    ->andWhere('r.type IN (:SearchType)')
+                    ->setParameter('SearchType',$search->SearchType);
+        }
+
+        if(!empty($search->SearchPromo)){
+            $query = $query
+                    ->andWhere('f.promotionEcole IN (:SearchPromo)')
+                    ->setParameter('SearchPromo',$search->SearchPromo);
+        }
+
+        if(!empty($search->SearchCentre)){
+            $query = $query
+                    ->andWhere('t.centre LIKE :SearchCentre')
+                    ->setParameter('SearchCentre',"%{$search->SearchCentre}%");
+        }
+        return $query->getQuery()->getResult();
     }
 
     // /**

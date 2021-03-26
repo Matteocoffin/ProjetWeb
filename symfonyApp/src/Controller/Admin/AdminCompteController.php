@@ -5,17 +5,21 @@ use App\Entity\Utilisateur;
 use App\Entity\Type;
 use App\Entity\Centre;
 use App\Entity\Promo;
+use App\Entity\Search\CompteSearch;
 use App\Form\UtilisateurType;
+use Knp\Component\Pager\PaginatorInterface;
 use App\Form\TypeType;
 use App\Form\CentreType;
+use App\Form\CompteSearchType;
 use App\Form\PromoType;
 use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class AdminCompteController extends AbstractController
+class AdminCompteController extends AbstractController 
 {
     /**
      * @var UtilisateurRepository
@@ -30,21 +34,25 @@ class AdminCompteController extends AbstractController
      * @Route("/admin/Compte", name="admin.Compte")
      * @return \Symfony\Component\httpFoundation\Response
      */
-    public function index(Request $request, Request $requestType, Request $requestCentre, Request $requestPromo)
+    public function index(Request $request,Request $requestSearch, UserPasswordEncoderInterface $encoder,PaginatorInterface $paginator)
     {
+        $search = new CompteSearch();
+        $formSearch = $this->createForm(CompteSearchType::class,$search);
+        $formSearch->handleRequest($requestSearch);
         $Utilisateur = new Utilisateur();
         $form = $this->createForm(UtilisateurType::class, $Utilisateur);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $hash = $encoder->encodePassword($Utilisateur, $Utilisateur->getMdp());
+            $Utilisateur->setMdp($hash);
             $this->em = $this->getDoctrine()->getManager();
             $this->em->persist($Utilisateur);
             $this->em->flush();
             return $this->redirectToRoute(route: 'admin.Compte');
         }
-
-        $Utilisateur = $this->repository->FindUtilisateur();
-        dump($Utilisateur);
-        return $this->render("admin/GestionCompte.php.twig", ['Utilisateur' => $Utilisateur, 'form'=> $form->createView()]);
+        $Utilisateur = $paginator->paginate($this->repository->FindUtilisateurQuery($search), $request->query->getInt('page', 1), 2);
+        //dump($Utilisateur);
+        return $this->render("admin/GestionCompte.php.twig", ['Utilisateur' => $Utilisateur, 'form'=> $form->createView(),'formSearch' => $formSearch->createView()]);
     }
 
     /**

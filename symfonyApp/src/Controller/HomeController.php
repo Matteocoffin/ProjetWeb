@@ -3,9 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Offre;
+use App\Entity\Search\OffreSearch;
+use App\Form\OffreSearchType;
 use App\Repository\OffreRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
@@ -26,12 +31,16 @@ class HomeController extends AbstractController
      * @Route("/",name="home")
      * @return Response
     */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request, Request $requestSearch): Response
     {
-        $Offre = $this->repository->findOffre();
+        $search = new OffreSearch();
+        $form = $this->createForm(OffreSearchType::class,$search);
+        $form->handleRequest($requestSearch);
+        $Offre = $paginator->paginate($this->repository->FindOffreQuery($search), $request->query->getInt('page', 1), 2);
         dump($Offre);
         return $this->render('Pages/home.php.twig', [
             'Offre' => $Offre,
+            'form' => $form->createView()
         ]);
     }
 

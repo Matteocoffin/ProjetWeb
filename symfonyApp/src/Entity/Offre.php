@@ -70,6 +70,13 @@ class Offre
     private $description;
 
     /**
+     * @var string
+     * @Assert\Length(min=5,max=255)
+     * @ORM\Column(name="Titre", type="string", length=255, nullable=false)
+     */
+    private $titre;
+
+    /**
      * @var \Entreprise
      *
      * @ORM\ManyToOne(targetEntity="Entreprise")
@@ -107,7 +114,7 @@ class Offre
 
     public function __toString()
     {
-        return $this->description;
+        return $this->titre;
     }
 
     public function getSlug(): string
@@ -189,6 +196,18 @@ class Offre
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
 
         return $this;
     }

@@ -20,6 +20,7 @@ class OffreType extends AbstractType
             ->add('nbPlace')
             ->add('description', TextareaType::class)
             ->add('idEntreprise')
+            ->add('Titre')
             //->add('idUtilisateur')
             //->add('idCompetences')
         ;

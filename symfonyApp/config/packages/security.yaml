@@ -2,28 +2,33 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
         App\Entity\Utilisateur:
-            algorithm: auto
+            algorithm: bcrypt
+        hash: 
+            algorithm: bcrypt
     providers:
-        from_database:
+        data_base:
             entity:
                 class: App\Entity\Utilisateur
                 property: login
+            
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: true
+            lazy: true  
+            provider: data_base
+            guard:
+                authenticators:
+                    - App\Security\AppUtilisateurAuthentucatorAuthenticator
+                
             logout:
-                path: /logout
-                target: /
-            #lazy: true
-            # provider: users_in_memory
-
-            form_login: 
-                login_path: login
-                check_path: login
-                provider: from_database
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+                
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

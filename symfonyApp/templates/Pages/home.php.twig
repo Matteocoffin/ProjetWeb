@@ -7,41 +7,60 @@
                 <h5 class="card-title">Bienvenue dans notre site : User_test</h5>
                 <p class="card-text">Votre compte est identifié comme un compte : User_type. Je vous pris si vous n'avez pas encore lu les mentions légales
                 , de prendre quelque temps pour les lires.</p>
-                <a href="#" class="btn btn-primary">MENTIONS LEGALES</a>
+                <a href="{{path('About')}}" class="btn btn-primary">MENTIONS LEGALES</a>
             </div>
         </div>
     </div>
-
     <div class="container" style='margin-top: 5%;'>
+        {{ form_start(form) }}
         <form>
             <div class='row'>
                 <div class='col-md-2'>
                     <label for="region">Choix de la région?</label>
-                    <input class="form-control" id="region" type="text" placeholder="Search..">
+                    {{form_row(form.Searchlocalite)}}
                 </div>
                 <div class='col-md-2'>
                     <label for="Competence">Choix de la competence?</label>
-                    <input class="form-control" id="Competence" type="text" placeholder="Search..">
+                    {{form_row(form.SearchCompetences)}}
                 </div>
                 <div class='col-md-2'>
                     <label for="Entreprise">Choix de l'entreprise?</label>
-                    <input class="form-control" id="Entreprise" type="text" placeholder="Search..">
+                    {{form_row(form.SearchEntreprise)}}
+                </div>
+                    <div class='col-md-3'>
+                        <div class='row'>
+                        <label for="remuneration">Remuneration ?</label>
+                        <div class='col-md-5'>
+                            {{form_row(form.max)}}
+                        </div>
+                        <div class='col-md-5'>
+                            {{form_row(form.min)}}
+                        </div>
+                        </div>
+                    </div>
+                <div class='col-md-2'>
+                    <label for="recherche">Recherche ?</label>
+                    {{form_row(form.s)}}
                 </div>
                 <div class='col-md-1'>
                     <label for="Entreprise">Filtre :</label>
-                    <button type="button" class="btn btn-dark">Valider</button>
+                    <button class="btn btn-dark">Filtrer</button>
                 </div>
             </div>
         </form>
+        {{ form_end(form) }}
+        <div class=".table-responsive   ">
         <table class="table table-light">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Evaluation</th>
                     <th scope="col">Company</th>
+                    <th scope="col">Titre</th>
                     <th scope="col">Compétences</th>
                     <th scope="col">Description</th>
                     <th scope="col">Location</th>
+                    <th scope="col">Remuneration</th>
                     <th scope="col">Wish-list</th>
                     <th scope="col">Supprimer</th>
                 </tr>
@@ -52,17 +71,20 @@
                 <th scope="row">{{offre.IdOffre}}</th>
                 <td><i class="far fa-heart fa-2x" data-bs-toggle="modal" data-bs-target="#Evaluate"></i></td>
                 <td><a href="{{path('voiroffre',{id: offre.IdOffre, slug: offre.slug})}}">{{offre.idEntreprise}}<a></td>
+                <td>{{offre.titre}}</td>
                 <td>{{offre.idCompetences[0]}}</td>
                 <td>{{offre.Description}}</td>
                 <td>{{offre.idEntreprise.idLocalite[0]}}</td>
+                <td>{{offre.remuneration}}</td>
                 <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
                 <td><i class="fas fa-times fa-2x"></i></td>
             </tr>
             {% endfor %}
             </tbody>
         </table>
+        </div>
     </div>
     <div class='d-flex justify-content-center' style='margin-top: 5%;'>
-        <button type="button" class="btn btn-dark">Plus d'options</button>
+        {{ knp_pagination_render(Offre)}}
     </div>
 {% endblock %}
