@@ -34,19 +34,16 @@
                         <a class="nav-link" href="{{path('About')}}">ABOUT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ContactPage.php">CONTACT</a>
+                        <a class="nav-link" href="{{path('ContactUs')}}">CONTACT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="InscriptionPage.php">S'INCRIRE</a>
+                        <a class="nav-link" href="{{path('app_login')}}">CONNEXION</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="connexion.php">CONNEXION</a>
+                        <a class="nav-link" href="{{path('wishlistUsers')}}">WISHLIST</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="WishListPage.php">WISHLIST</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ProfilPage.php">PROFIL</a>
+                        <a class="nav-link" href="{{path('profil')}}">PROFIL</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,8 +55,8 @@
                             <li><a class="dropdown-item" href="{{path('admin.Compte')}}">COMPTE</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">DROITS</a></li>
-                            <li><a class="dropdown-item" href="AvancementPage.php">STAT ETUDIANT</a></li>
-                            <li><a class="dropdown-item" href="StatistiquePage.php">STAT ENTREPRISE/OFFRE</a></li>
+                            <li><a class="dropdown-item" href="{{path('admin.CompteEtudiant')}}">STAT ETUDIANT</a></li>
+                            <li><a class="dropdown-item" href="{{path('admin.Statoffre')}}">STAT ENTREPRISE/OFFRE</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -133,7 +130,7 @@
                 <!-- Section: Social media -->
             </div>
         <!-- Grid container -->
-
+            <a href="{{path('app_logout')}}">Déconnexion</a>
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                 © 2020 Copyright:

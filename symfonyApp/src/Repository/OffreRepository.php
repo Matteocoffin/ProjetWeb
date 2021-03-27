@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Offre;
+use App\Entity\Search\OffreGSearch;
 use App\Entity\Search\OffreSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -35,6 +36,48 @@ class OffreRepository extends ServiceEntityRepository
     
     }
 
+    /**
+     * @return Offre[]
+     */
+
+    public function FindOffreGQuery(OffreGSearch $search): array
+    {
+        $query = $this->createQueryBuilder(alias:'c')
+                        ->join('c.idEntreprise','r')
+                        ->join('r.idLocalite','t')
+                        ->join('c.idCompetences','f')
+                        ->join('f.idOffre','m')
+                        ->addSelect('r')
+                        ->addSelect('f');
+        if(!empty($search->s)){
+            $query = $query
+                    ->andWhere('c.titre LIKE :s')
+                    ->setParameter('s',"%{$search->s}%");
+        }
+
+        if(!empty($search->min)){
+            $query = $query
+                    ->andWhere('c.remuneration >= :min')
+                    ->setParameter('min',"$search->min");
+        }
+        if(!empty($search->max)){
+            $query = $query
+                    ->andWhere('c.remuneration <= :max')
+                    ->setParameter('max',"$search->max");
+        }
+        if(!empty($search->nbplace)){
+            $query = $query
+                    ->andWhere('c.nbPlace = :nbplace')
+                    ->setParameter('nbplace',"$search->nbplace");
+        }
+
+        if(!empty($search->idSearch)){
+            $query = $query
+                    ->andWhere('c.idOffre = :idSearch')
+                    ->setParameter('idSearch',$search->idSearch);
+        }
+        return $query->getQuery()->getResult();
+    }
     /**
      * @return Offre[]
      */
@@ -88,6 +131,7 @@ class OffreRepository extends ServiceEntityRepository
                     ->andWhere('r.nomEntreprise LIKE :SearchEntreprise')
                     ->setParameter('SearchEntreprise',"%{$search->SearchEntreprise}%");
         }
+        
         return $query->getQuery()->getResult();
     }
     

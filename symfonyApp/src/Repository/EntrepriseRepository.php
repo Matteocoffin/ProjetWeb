@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Entreprise;
+use App\Entity\Search\EntrepriseSearch;
 use App\Entity\SecteurDActivite;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -41,10 +42,51 @@ class EntrepriseRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder(alias:'c')
                     ->join('c.idSecteur','r')
-                    ->addSelect('r')
-                    ->setMaxResults(maxResults:10)
+                    ->join('c.idLocalite','t')
+                    ->addSelect('r','t')
                     ->getQuery()
                     ->getResult();
+    }
+
+
+    /**
+     * @return Entreprise[]
+     */
+    public function FindEntrepriseQuery(EntrepriseSearch $search): array
+    {
+        $query = $this->createQueryBuilder(alias:'c')
+                    ->join('c.idSecteur','r')
+                    ->join('c.idLocalite','t')
+                    ->addSelect('r')
+                    ->addSelect('t');
+        if(!empty($search->s)){
+            $query = $query
+                    ->andWhere('c.nomEntreprise LIKE :s')
+                    ->setParameter('s',"%{$search->s}%");
+        }
+        if(!empty($search->nbCesi)){
+            $query = $query
+                    ->andWhere('c.nbDeStagiairesCesi = :nbCesi')
+                    ->setParameter('nbCesi',"$search->nbCesi");
+        }
+        if(!empty($search->idSearch)){
+            $query = $query
+                    ->andWhere('c.idOffre = :idSearch')
+                    ->setParameter('idSearch',$search->idSearch);
+        }
+        if(!empty($search->Searchlocalite)){
+            $query = $query
+                    ->andWhere('t.region LIKE :Searchlocalite')
+                    ->setParameter('Searchlocalite',"%{$search->Searchlocalite}%");
+        }
+
+        if(!empty($search->SearchSecteur)){
+            $query = $query
+                    ->andWhere('r.secteurDActivite LIKE :SearchSecteur')
+                    ->setParameter('SearchSecteur',"%{$search->SearchSecteur}%");
+        }
+        return $query->getQuery()->getResult();
+
     }
     
     // /**

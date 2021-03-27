@@ -28,6 +28,11 @@ class Avancement
      */
     private $etape;
 
+    public function __toString()
+    {
+        return $this->etape;
+    }
+
     public function getIdAvancement(): ?int
     {
         return $this->idAvancement;

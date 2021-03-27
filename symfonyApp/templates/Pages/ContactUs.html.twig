@@ -1,0 +1,35 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+    <div class='text-center' style='margin-top: 3%;'>
+        <h1>Contacter nous :</h1>
+    </div>
+    {{form_start(form)}}
+    <div class='container' style='background-color:lightgray; padding:15px; margin-top:5%; border-radius: 25px;'>
+        <div class='row justify-content-center'>
+            <div class='col-md-3'>
+                {{form_row(form.lastname)}}
+            </div>
+            <div class='col-md-3'>
+                {{form_row(form.firstname)}}
+            </div>
+        </div>
+        <div class='row justify-content-center' style='margin-top:5%;'>
+            <div class='col-md-3'>
+                {{form_row(form.email)}}
+            </div>
+            <div class='col-md-3'>
+                {{form_row(form.sujet)}}
+            </div>
+        </div>
+        <div class='row justify-content-center' style='margin-top:5%;'>
+            <div class='col-md-10'>
+                {{form_row(form.message)}}
+            </div>
+        </div>
+        <div class='text-center' style='margin-top: 5%;'>
+            <button class="btn btn-dark">Envoyer</button>
+        </div>
+    </div>
+    {{form_end(form)}}
+{% endblock %}

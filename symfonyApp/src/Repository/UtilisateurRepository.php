@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Search\CompteSearch;
+use App\Entity\Search\EtudiantSearch;
 use App\Entity\Utilisateur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -30,6 +31,32 @@ class UtilisateurRepository extends ServiceEntityRepository
                     ->getResult();
     }
 
+    public function FindEtudiantQuery(EtudiantSearch $search): array
+    {
+        $query = $this->createQueryBuilder(alias:'c')
+                    ->join('c.idType','r')
+                    ->join('c.idCentre','t')
+                    ->join('c.idPromo','f')
+                    ->andWhere('r.idType = 4');
+        if(!empty($search->s)){
+            $query = $query
+                    ->andWhere('c.login LIKE :s')
+                    ->setParameter('s',"%{$search->s}%");
+        }
+        if(!empty($search->SearchPromo)){
+            $query = $query
+                    ->andWhere('f.idPromo IN (:SearchPromo)')
+                    ->setParameter('SearchPromo',$search->SearchPromo);
+        }
+
+        if(!empty($search->SearchCentre)){
+            $query = $query
+                    ->andWhere('t.centre LIKE :SearchCentre')
+                    ->setParameter('SearchCentre',"%{$search->SearchCentre}%");
+        }
+        return $query->getQuery()->getResult();
+    }
+
     public function FindUtilisateurQuery(CompteSearch $search): array
     {
         $query = $this->createQueryBuilder(alias:'c')
@@ -49,13 +76,13 @@ class UtilisateurRepository extends ServiceEntityRepository
 
         if(!empty($search->SearchType)){
             $query = $query
-                    ->andWhere('r.type IN (:SearchType)')
+                    ->andWhere('r.idType IN (:SearchType)')
                     ->setParameter('SearchType',$search->SearchType);
         }
 
         if(!empty($search->SearchPromo)){
             $query = $query
-                    ->andWhere('f.promotionEcole IN (:SearchPromo)')
+                    ->andWhere('f.idPromo IN (:SearchPromo)')
                     ->setParameter('SearchPromo',$search->SearchPromo);
         }
 

@@ -3,6 +3,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Competences;
 use App\Entity\Offre;
+use App\Entity\Search\OffreGSearch;
+use App\Form\OffreGSearchType;
 use App\Entity\Entreprise;
 use App\Form\CompetenceType;
 use App\Form\EntrepriseType;
@@ -14,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 class AdminOffreController extends AbstractController
 {
@@ -31,9 +34,12 @@ class AdminOffreController extends AbstractController
      * @Route("/admin/offre", name="admin.offre")
      * @return \Symfony\Component\httpFoundation\Response
      */
-    public function index(Request $request, Request $requestCompetence) 
+    public function index(PaginatorInterface $paginator,Request $request, Request $requestCompetence, Request $requestSearch) 
     {
         //$entreprise = new Entreprise();
+        $search = new OffreGSearch();
+        $formSearch = $this->createForm(OffreGSearchType::class,$search);
+        $formSearch->handleRequest($requestSearch);
         $offre = new Offre();
         $Competence = new Competences();
         $form = $this->createForm(OffreType::class, $offre);
@@ -60,9 +66,9 @@ class AdminOffreController extends AbstractController
             $this->em->flush();
             return $this->redirectToRoute(route: 'admin.offre');
         }
-        $offre = $this->repository->FindOffre();
+        $offre = $paginator->paginate($this->repository->FindOffreGQuery($search), $request->query->getInt('page', 1), 2);
         dump($offre);
-        return $this->render("admin/GestionOffre.php.twig", ['offre' => $offre, 'formCompetence'=> $formCompetence->createView(), 'form'=> $form->createView()]);
+        return $this->render("admin/GestionOffre.php.twig", ['offre' => $offre, 'formCompetence'=> $formCompetence->createView(), 'form'=> $form->createView(), 'formSearch' => $formSearch->createView()]);
     }
 
     /**

@@ -251,7 +251,13 @@ class Utilisateur implements UserInterface,\Serializable
      */
     public function getRoles()
     {
-        return ['ROLE_ADMIN'];
+        dump($this->idType);
+        if($this->idType == 'administrateur'){
+            return ['ROLE_ADMIN'];
+        }
+        else{
+            return ['ROLE_USER'];
+        }
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\WishList;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Utilisateur;
 
 /**
  * @method WishList|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,17 @@ class WishListRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, WishList::class);
+    }
+
+    public function findWishlist(Utilisateur $user) : array
+    {
+        return $this->createQueryBuilder('w')
+                    ->join('w.idOffre','t')
+                    ->join('t.idEntreprise','f')
+                    ->Where('w.idUtilisateur = '.$user->getIdUtilisateur().'')
+                    ->addSelect('t')
+                    ->getQuery()
+                    ->getResult();
     }
 
     // /**

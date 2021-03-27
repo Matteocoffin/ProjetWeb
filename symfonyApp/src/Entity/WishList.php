@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * WishList
@@ -46,6 +47,11 @@ class WishList
         return $this->idWishlist;
     }
 
+    public function getSlug(): string
+    {
+        return (new Slugify())->slugify($this->idOffre);
+    }
+
     public function getIdOffre(): ?Offre
     {
         return $this->idOffre;
@@ -66,7 +72,6 @@ class WishList
     public function setIdUtilisateur(?Utilisateur $idUtilisateur): self
     {
         $this->idUtilisateur = $idUtilisateur;
-
         return $this;
     }
 
