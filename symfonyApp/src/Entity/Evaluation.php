@@ -88,7 +88,6 @@ class Evaluation
     public function setIdUtilisateur(?Utilisateur $idUtilisateur): self
     {
         $this->idUtilisateur = $idUtilisateur;
-
         return $this;
     }
 

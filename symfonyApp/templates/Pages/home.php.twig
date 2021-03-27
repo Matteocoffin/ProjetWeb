@@ -69,7 +69,7 @@
             {% for offre in Offre %}
             <tr>
                 <th scope="row">{{offre.IdOffre}}</th>
-                <td><i class="far fa-heart fa-2x" data-bs-toggle="modal" data-bs-target="#Evaluate"></i></td>
+                <td><a href=""><i class="far fa-heart fa-2x" data-bs-toggle="modal"></i></a></td>
                 <td><a href="{{path('voiroffre',{id: offre.IdOffre, slug: offre.slug})}}">{{offre.idEntreprise}}<a></td>
                 <td>{{offre.titre}}</td>
                 

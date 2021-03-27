@@ -255,9 +255,13 @@ class Utilisateur implements UserInterface,\Serializable
         if($this->idType == 'administrateur'){
             return ['ROLE_ADMIN'];
         }
-        else{
+        else if($this->idType == 'Etudiant'){
             return ['ROLE_USER'];
         }
+        else{
+            return ['ROLE_PILOTE'];
+        }
+
     }
 
     /**

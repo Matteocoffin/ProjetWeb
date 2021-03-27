@@ -2,11 +2,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Entreprise;
+use App\Entity\Evaluation;
 use App\Entity\SecteurDActivite;
 use App\Entity\Localite;
 use App\Entity\Search\EntrepriseSearch;
 use App\Form\EntrepriseSearchType;
 use App\Form\EntrepriseType;
+use App\Form\EvaluerType;
 use App\Form\SecteurType;
 use App\Form\LocaliteType;
 use App\Repository\EntrepriseRepository;
@@ -27,9 +29,6 @@ class AdminEntrepriseController extends AbstractController
         $this->repository = $repository;
     }
 
-
-    
-    
     /**
      * @Route("/admin/entreprise", name="admin.entreprise")
      * @return \Symfony\Component\httpFoundation\Response
@@ -67,7 +66,6 @@ class AdminEntrepriseController extends AbstractController
             return $this->redirectToRoute(route: 'admin.entreprise');
         }
         $entreprises = $paginator->paginate($this->repository->FindEntrepriseQuery($search), $request->query->getInt('page', 1), 2);
-        dump($entreprises);
         return $this->render("admin/GestionEntreprise.php.twig", ['entreprises' => $entreprises, 'form'=> $form->createView(),'formSecteur'=> $formSecteur->createView(), 'formLocalite'=> $formLocalite->createView(), 'formSearch' => $formSearch->createView()]);
     }
     /**
@@ -116,4 +114,24 @@ class AdminEntrepriseController extends AbstractController
     }
 
 
-}
+    /**
+     * @Route("/pilote/entreprise/evaluer", name="Evaluer")
+     */
+    public function evaluer( Request $request)
+    {
+        $evaluer = new Evaluation();
+        $form = $this->createForm(EvaluerType::class, $evaluer);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $evaluer->setIdUtilisateur($user = $this->getUser());
+            $this->em = $this->getDoctrine()->getManager();
+            $this->em->persist($evaluer);
+            $this->em->flush();
+            return $this->redirectToRoute(route: 'Evaluer');
+        }
+        
+        return $this->render('pilote/Evaluation.html.twig', ['evaluer' => $evaluer, 'form' => $form->createView()]);
+    }
+
+
+}   
