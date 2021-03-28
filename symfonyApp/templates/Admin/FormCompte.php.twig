@@ -1,0 +1,44 @@
+{{form_start(form)}}
+    <div class='container'>
+        <div class='row' style='margin-left:1%; margin-top: 3%;'>
+        <h3>Comptes :</h3>
+            <div class='col-md-13' style='background-color:lightgray; padding: 1em;'>
+                <div class='row'>
+                    <div class='col-md-4'>
+                        {{form_row(form.nom)}}    
+                    </div>
+                    <div class='col-md-4'>
+                        {{form_row(form.prenom)}}
+                    </div>
+                </div>
+                <div class='row' style='margin-top:2%;'>
+                    <div class='col-md-3'>
+                        {{form_row(form.login)}}
+                    </div>
+                    <div class='col-md-3'>
+                        {{form_row(form.mdp)}}
+                    </div>
+                    <div class='col-md-4'>
+                        {{form_row(form.email)}}
+                    </div>
+                </div>
+                <div class='row' style='margin-top:2%;'>
+                    <div class='col-md-4'>
+                        {{form_row(form.idCentre)}}
+                    </div>
+                    <div class='col-md-4'>
+                        {{form_row(form.idPromo)}}
+                    </div>
+                    <div class='col-md-3'>
+                        {{form_row(form.idType)}}
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='text-center' style='margin-top: 3%;'>
+                        <button type="submit" class="btn btn-dark">{{button|default("Créer")}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{form_end(form)}}

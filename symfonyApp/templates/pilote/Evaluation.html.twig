@@ -1,0 +1,18 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="container" style="margin-top:5%;">
+        <div>
+            {{form_row(form.notesEtoiles)}}
+        </div>
+        <div style="margin-top:5%;">
+            {{form_row(form.idEntreprise)}}
+        </div>
+        <div class='text-center' style='margin-top: 3%;'>
+            <button type="submit" class="btn btn-dark">Evaluer</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

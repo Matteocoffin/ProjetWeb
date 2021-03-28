@@ -1,0 +1,91 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+    <div class='text-center' style='margin-top: 3%;'>
+        <h1>Offres :</h1>
+    </div>
+    {% for message in app.flashes('success') %}
+        <div class="container">
+            <div class='alert alert-success'>
+                {{message}}
+            </div>
+        </div>
+    {% endfor %}
+    
+    {{ include('admin/FormOffre.php.twig',{form: form, button:'Créer'}) }}
+    <div class='container' style='margin-top:5%;'>
+        {{ form_start(formSearch) }}
+        <form>
+            <div class='row'>
+                <div class='col-md-2'>
+                    <label for="ID">Choix de l'id ?</label>
+                    {{form_row(formSearch.idSearch)}}
+                </div>
+                <div class='col-md-2'>
+                    <label for="region">Nombre de place ?</label>
+                    {{form_row(formSearch.nbplace)}}
+                </div>
+                <div class='col-md-3'>
+                    <div class='row'>
+                        <label for="remuneration">Remuneration ?</label>
+                        <div class='col-md-5'>
+                            {{form_row(formSearch.max)}}
+                        </div>
+                        <div class='col-md-5'>
+                            {{form_row(formSearch.min)}}
+                        </div>
+                    </div>
+                </div>
+                <div class='col-md-2'>
+                    <label for="Entreprise">Recherche du titre ?</label>
+                    {{form_row(formSearch.s)}}
+                </div>
+                <div class='col-md-1'>
+                    <label for="Entreprise">Filtre :</label>
+                    <button class="btn btn-dark">Filtrer</button>
+                </div>
+            </div>
+        </form>
+        {{ form_end(formSearch) }}
+        <div class="table-responsive">
+            <table class="table table-light">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Entreprise</th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">date de debut</th>
+                        <th scope="col">date de fin</th>
+                        <th scope="col">Rémunération</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">nombre de places</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for offre in offre %}
+                <tr>
+                    <th scope="row">{{offre.IdOffre}}</th>
+                    <td>{{offre.idEntreprise}}</td>
+                    <td>{{offre.Titre}}</td>
+                    <td>{{offre.debutstage|date('d/m/Y')}}</td>
+                    <td>{{offre.finstage|date('d/m/Y')}}</td>
+                    <td>{{offre.Remuneration}}</td>
+                    <td>{{offre.Description}}</td>
+                    <td>{{offre.Nbplace}}</td>
+                    <td><a href="{{path('admin.offre.edit',{id: offre.IdOffre})}}" class="btn btn-dark">Editer</a></td>
+                    <td><form method="post" action="{{path('admin.offre.delete',{id: offre.IdOffre})}}" onsubmit="return confirm('Voulez-vous supprimer?')">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ offre.IdOffre)}}">
+                        <button class="btn btn-dark">Supprimer</button>
+                    </form></td></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class='d-flex justify-content-center' style='margin-top: 5%;'>
+        {{ knp_pagination_render(offre)}}
+    </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{{form_start(form)}}
+    <div class='container'>
+        <div class='row' style='margin-left:1%; margin-top: 3%;'>
+        <h3>Entreprise :</h3>
+            <div class='col-md-13' style='background-color:lightgray; padding: 1em;'>
+                <div class='row'>
+                    <div class='col-md-6'>
+                        {{form_row(form.debutStage)}}    
+                    </div>
+                    <div class='col-md-6'>
+                        {{form_row(form.finStage)}}
+                    </div>
+                </div>
+                <div class='row' style='margin-top:2%;'>
+                    <div class='col-md-3'>
+                        {{form_row(form.Titre)}}
+                    </div>
+                    <div class='col-md-2'>
+                        {{form_row(form.nbPlace)}}
+                    </div>
+                    <div class='col-md-3'>
+                        {{form_row(form.idEntreprise)}}
+                    </div>
+                    <div class='col-md-3'>
+                        {{form_row(form.remuneration)}}
+                    </div>
+                </div>
+                <div class='row' style='margin-top:2%;'>
+                    <div class='col-md-12'>
+                        {{form_row(form.description)}}
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='text-center' style='margin-top: 3%;'>
+                        <button type="submit" class="btn btn-dark">{{button|default("Créer")}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{form_end(form)}}
+{{form_start(formCompetence)}}
+    <div class='container'>
+        <div class='row' style='margin-left:1%; margin-top: 3%;'>
+        <h3>Ajouter Compétences :</h3>
+            <div class='col-md-13' style='background-color:lightgray; padding: 1em;'>
+                <div class='row'>
+                    <div class='col-md-6'>
+                        {{form_row(formCompetence.competences)}}
+                    </div>
+                </div>
+                <div class='row' style='margin-top:2%;'>
+                    
+                    <div class='col-md-6'>
+                        {{form_row(formCompetence.idOffre)}}
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='text-center' style='margin-top: 3%;'>
+                        <button type="submit" class="btn btn-dark">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{form_end(formCompetence)}}

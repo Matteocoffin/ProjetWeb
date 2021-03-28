@@ -1,0 +1,33 @@
+{{form_start(form)}}
+    <div class='container'>
+        <div class='row' style='margin-left:1%; margin-top: 3%;'>
+        <h3>Entreprise :</h3>
+            <div class='col-md-13' style='background-color:lightgray; padding: 1em;'>
+                <div class='row'>
+                    <div class='col-md-6'>
+                        {{form_row(form.nomEntreprise)}}    
+                    </div>
+                    <div class='col-md-6'>
+                        {{form_row(form.infoEmail)}}
+                    </div>
+                </div>
+                <div class='row' style='margin-top:2%;'>
+                    <div class='col-md-6'>
+                        {{form_row(form.adresse)}}
+                    </div>
+                    <div class='col-md-6'>
+                        {{form_row(form.nbDeStagiairesCesi)}}
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='text-center' style='margin-top: 3%;'>
+                        <button type="submit" class="btn btn-dark">{{button|default("Créer")}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{form_end(form)}}
+
+    
+    

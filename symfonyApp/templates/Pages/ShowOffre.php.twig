@@ -1,0 +1,52 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="container mt-4"> 
+                <h1>Offre de stage de {{ offre.idEntreprise }}</h1>
+                <h4>Competences :</h4>
+                <p>{% for d in offre.idCompetences %}{{d.Competences}}/{% endfor %}</p>
+                <label for="Description">Description :</label>
+                <p>{{offre.Description | nl2br}}</p>
+                <label for="Location">Location :</label>
+                <p>{{offre.idEntreprise.adresse}} ({% for d in offre.idEntreprise.idLocalite %}{{d.region}}/{% endfor %})</p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class='text-center' style='margin-top: 3%;'>
+                <h1>Contacter nous :</h1>
+            </div>
+        {{form_start(form)}}
+            <div class='container'>
+                <div class='row justify-content-center'>
+                    <div class='col-md-3'>
+                        {{form_row(form.lastname)}}
+                    </div>
+                    <div class='col-md-3'>
+                        {{form_row(form.firstname)}}
+                    </div>
+                </div>
+                <div class='row justify-content-center' style='margin-top:5%;'>
+                    <div class='col-md-3'>
+                        {{form_row(form.email)}}
+                    </div>
+                    <div class='col-md-3'>
+                        {{form_row(form.sujet)}}
+                    </div>
+                </div>
+                <div class='row justify-content-center' style='margin-top:5%;'>
+                    <div class='col-md-10'>
+                        {{form_row(form.message)}}
+                    </div>
+                </div>
+                <div class='text-center' style='margin-top: 5%;'>
+                    <button class="btn btn-dark">Contacter l'offre</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {{form_end(form)}}
+{% endblock %}
