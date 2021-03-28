@@ -19,35 +19,37 @@
             {{ form_end(formSearch) }}
         </div>
         <div class="col-md-9">
-            <table class="table table-light">
-                <thead>
+            <div class="table-responsive">
+                <table class="table table-light">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Login</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Centre</th>
+                            <th scope="col">Promo</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for Utilisateur in Utilisateur %}
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Prénom</th>
-                        <th scope="col">Login</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Centre</th>
-                        <th scope="col">Promo</th>
-                        <th scope="col"></th>
+                        <th scope="row">{{Utilisateur.idUtilisateur}}</th>
+                        <td>{{Utilisateur.Nom}}</td>
+                        <td>{{Utilisateur.Prenom}}</td>
+                        <td>{{Utilisateur.login}}</td>
+                        <td>{{Utilisateur.Email}}</td>
+                        <td>{{Utilisateur.idCentre}}</td>
+                        <td>{{Utilisateur.idPromo}}</td></th>
                     </tr>
-                </thead>
-                <tbody>
-                {% for Utilisateur in Utilisateur %}
-                <tr>
-                    <th scope="row">{{Utilisateur.idUtilisateur}}</th>
-                    <td>{{Utilisateur.Nom}}</td>
-                    <td>{{Utilisateur.Prenom}}</td>
-                    <td>{{Utilisateur.login}}</td>
-                    <td>{{Utilisateur.Email}}</td>
-                    <td>{{Utilisateur.idCentre}}</td>
-                    <td>{{Utilisateur.idPromo}}</td></th>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <div class='d-flex justify-content-center' style='margin-top: 5%;'>
-                {{ knp_pagination_render(Utilisateur)}}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class='d-flex justify-content-center' style='margin-top: 5%;'>
+                    {{ knp_pagination_render(Utilisateur)}}
+                </div>
             </div>
         </div>
     </div>

@@ -99,39 +99,41 @@
             </div>
         </form>
         {{ form_end(formSearch) }}
-        <table class="table table-light">
-            <thead>
+        <div class="table-responsive">
+            <table class="table table-light">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Company</th>
+                        <th scope="col">mail</th>
+                        <th scope="col">Nombre de stagiaire CESI</th>
+                        <th scope="col">Secteurs</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Region</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entreprises in entreprises %}
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Company</th>
-                    <th scope="col">mail</th>
-                    <th scope="col">Nombre de stagiaire CESI</th>
-                    <th scope="col">Secteurs</th>
-                    <th scope="col">Adresse</th>
-                    <th scope="col">Region</th>
-                    <th scope="col"></th>
+                    <th scope="row">{{entreprises.IdEntreprise}}</th>
+                    <td>{{entreprises.NomEntreprise}}</td>
+                    <td>{{entreprises.infoEmail}}</td>
+                    <td>{{entreprises.nbDeStagiairesCesi}}</td>
+                    <td>{% for d in entreprises.idSecteur %}{{d.secteurDActivite}}/{% endfor %}</td>
+                    <td>{{entreprises.Adresse}}</td>
+                    <td>{% for g in entreprises.idLocalite %}{{g.region}}/ {% endfor %}</td>
+                    <td><a href="{{path('admin.entreprise.edit',{id: entreprises.idEntreprise})}}" class="btn btn-dark">Editer</a></td>
+                    <td><form method="post" action="{{path('admin.entreprise.delete',{id: entreprises.idEntreprise})}}" onsubmit="return confirm('Voulez-vous supprimer?')">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ entreprises.idEntreprise)}}">
+                        <button class="btn btn-dark">Supprimer</button>
+                    </form></td></td>
                 </tr>
-            </thead>
-            <tbody>
-            {% for entreprises in entreprises %}
-            <tr>
-                <th scope="row">{{entreprises.IdEntreprise}}</th>
-                <td>{{entreprises.NomEntreprise}}</td>
-                <td>{{entreprises.infoEmail}}</td>
-                <td>{{entreprises.nbDeStagiairesCesi}}</td>
-                <td>{% for d in entreprises.idSecteur %}{{d.secteurDActivite}}/{% endfor %}</td>
-                <td>{{entreprises.Adresse}}</td>
-                <td>{% for g in entreprises.idLocalite %}{{g.region}}/ {% endfor %}</td>
-                <td><a href="{{path('admin.entreprise.edit',{id: entreprises.idEntreprise})}}" class="btn btn-dark">Editer</a></td>
-                <td><form method="post" action="{{path('admin.entreprise.delete',{id: entreprises.idEntreprise})}}" onsubmit="return confirm('Voulez-vous supprimer?')">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ entreprises.idEntreprise)}}">
-                    <button class="btn btn-dark">Supprimer</button>
-                </form></td></td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class='d-flex justify-content-center' style='margin-top: 5%;'>
         {{ knp_pagination_render(entreprises)}}

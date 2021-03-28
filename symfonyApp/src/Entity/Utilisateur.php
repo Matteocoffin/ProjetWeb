@@ -251,15 +251,14 @@ class Utilisateur implements UserInterface,\Serializable
      */
     public function getRoles()
     {
-        dump($this->idType);
-        if($this->idType == 'administrateur'){
+        if($this->idType == 'Administrateur'){
             return ['ROLE_ADMIN'];
         }
         else if($this->idType == 'Etudiant'){
             return ['ROLE_USER'];
         }
-        else{
-            return ['ROLE_PILOTE'];
+        else if($this->idType == 'Pilote'){
+            return ['ROLE_PILOTE','ROLE_ADMIN'];
         }
 
     }

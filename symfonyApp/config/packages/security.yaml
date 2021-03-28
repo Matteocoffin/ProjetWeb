@@ -43,6 +43,10 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/users, roles: ROLE_USER }
         - { path: ^/pilote, roles: ROLE_PILOTE }
+    
+    role_hierarchy:
+        ROLE_PILOTE: ROLE_USER
+        ROLE_ADMIN: ROLE_PILOTE
 
 
     

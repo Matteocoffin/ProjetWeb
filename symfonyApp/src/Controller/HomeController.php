@@ -33,7 +33,7 @@ class HomeController extends AbstractController
         $this->repository = $repository;
     }
     /**
-     * @Route("/",name="home")
+     * @Route("/home",name="home")
      * @return Response
     */
     public function index(PaginatorInterface $paginator, Request $request, Request $requestSearch): Response
