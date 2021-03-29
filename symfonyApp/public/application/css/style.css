@@ -1,0 +1,18 @@
+#Offre {
+    margin:5%;
+}
+
+#carte{
+    margin-top:5%;
+}
+body{
+    background-image:url(/application/img/fond.jpg);
+}
+header.page-header {
+    display: flex;
+    height: 120px;
+    min-width: 120px;
+    align-items: center;
+    color: #fff;
+    text-shadow: #000 0 0 .2em;
+}
