@@ -9,7 +9,7 @@
 </div>
 {% endfor %}
 {% for wishlist in wishlist %}
-<div class="container" style="margin-top:2%;">
+<div class="container" id='margT2'>
     <div class="card">
         <h5 class="card-header">{{wishlist.idOffre.titre}}</h5>
         <div class="card-body">
@@ -20,12 +20,18 @@
             <p class="card-text">{{wishlist.idOffre.Description | nl2br}}}</p>
             <p class="card-text">Compétences requises : {% for d in wishlist.idOffre.idCompetences %}{{d.Competences}}/{% endfor %}</p>
             <p class="card-text">Lieu : {{wishlist.idOffre.idEntreprise.adresse}}  ({% for g in wishlist.idOffre.idEntreprise.idLocalite %}{{g.region}}/ {% endfor %})</p>
-            <a href="{{path('voiroffre',{id: wishlist.idOffre.idOffre, slug: wishlist.slug})}}" class="btn btn-dark">Contacter</a>
-            <form method="post" action="{{path('wishlistUsers.delete',{id: wishlist.idWishlist})}}" onsubmit="return confirm('Voulez-vous supprimer?')">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ wishlist.idWishlist)}}">
-                <button class="btn btn-dark" style="margin-top:1%;">Supprimer</button>
-            </form>
+            <div class="row">
+                <div class="col-md-1">
+                  <a href="{{path('voiroffre',{id: wishlist.idOffre.idOffre, slug: wishlist.slug})}}" class="btn btn-dark">Contacter</a>
+                </div>
+                <div class="col-md-1">
+                    <form method="post" action="{{path('wishlistUsers.delete',{id: wishlist.idWishlist})}}" onsubmit="return confirm('Voulez-vous supprimer?')">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ wishlist.idWishlist)}}">
+                        <button class="btn btn-dark">Supprimer</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

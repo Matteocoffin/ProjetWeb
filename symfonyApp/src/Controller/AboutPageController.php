@@ -34,6 +34,7 @@ class AboutPageController extends AbstractController
         $form = $this->createForm(ContactType::class,$contact);
         $form->handleRequest($requestSearch);
         if($form->isSubmitted() && $form->isValid()){
+            dump($contact->email);
             $email = (new TemplatedEmail())
                     ->from($contact->email)
                     ->to('contact@agence.fr')

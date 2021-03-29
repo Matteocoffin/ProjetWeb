@@ -64,13 +64,15 @@ class HomeController extends AbstractController
                     ->from($contact->email)
                     ->to('contact@agence.fr')
                     ->subject($contact->sujet)
-                    ->htmlTemplate('emails/contact.html.twig')
+                    ->htmlTemplate('emails/contactStage.html.twig')
                     ->context([
                         'text' => $contact->message,
+                        'stage' => $Offre->getTitre(),
+                        'datedebut' => $Offre->getDebutStage(),
+                        'datefin' => $Offre->getFinStage(),
                         'mail' => $contact->email,
                         'nom' => $contact->lastname,
                         'prenom' => $contact->firstname,
-                        'sujet' => $contact->sujet
                     ]);
             $mailer->send($email);
             $this->addFlash('success', 'Votre email a bien été envoyé');

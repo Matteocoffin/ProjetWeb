@@ -2,20 +2,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Utilisateur;
-use App\Entity\Type;
-use App\Entity\Centre;
-use App\Entity\Promo;
 use App\Entity\Search\CompteSearch;
 use App\Form\UtilisateurType;
 use Knp\Component\Pager\PaginatorInterface;
-use App\Form\TypeType;
-use App\Form\CentreType;
 use App\Form\CompteSearchType;
-use App\Form\PromoType;
 use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -77,7 +70,7 @@ class AdminCompteController extends AbstractController
            return $this->redirectToRoute(route: 'admin.Compte');
        }
 
-       return $this->render('admin/ModifierOffre.php.twig', ['Utilisateur' => $Utilisateur, 'form' => $form->createView()]);
+       return $this->render('admin/ModifierCompte.html.twig', ['Utilisateur' => $Utilisateur, 'form' => $form->createView()]);
     }
 
 

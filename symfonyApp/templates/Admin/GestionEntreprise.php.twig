@@ -1,7 +1,7 @@
 {% extends 'base.html.twig'%}
 
 {% block body %}
-    <div class='text-center' style='margin-top: 3%;'>
+    <div class='text-center' id='margT3'>
         <h1>Entreprise :</h1>
     {% for message in app.flashes('success') %}
         <div class="container">
@@ -15,22 +15,19 @@
     {{ include('admin/FormEntreprise.php.twig',{form: form, button:'Créer'}) }}
     {{form_start(formSecteur)}}
     <div class='container'>
-        <div class='row' style='margin-left:1%; margin-top: 3%;'>
+        <div class='row' id='margContainer'>
         <h3>Ajouter Secteur :</h3>
-            <div class='col-md-13' style='background-color:lightgray; padding: 1em;'>
+            <div class='col-md-13' id='CadreColor'>
                 <div class='row'>
                     <div class='col-md-6'>
                         {{form_row(formSecteur.idEntreprise)}}
                     </div>
-                </div>
-                <div class='row' style='margin-top:2%;'>
-                    
                     <div class='col-md-6'>
                         {{form_row(formSecteur.secteurDActivite)}}
                     </div>
                 </div>
                 <div class='row'>
-                    <div class='text-center' style='margin-top: 3%;'>
+                    <div class='text-center' id='margT3'>
                         <button type="submit" class="btn btn-dark">Ajouter</button>
                     </div>
                 </div>
@@ -40,9 +37,9 @@
     {{form_end(formSecteur)}}
     {{form_start(formLocalite)}}
     <div class='container'>
-        <div class='row' style='margin-left:1%; margin-top: 3%;'>
+        <div class='row' id='margContainer'>
         <h3>Ajouter Localite :</h3>
-            <div class='col-md-13' style='background-color:lightgray; padding: 1em;'>
+            <div class='col-md-13' id='CadreColor'>
                 <div class='row'>
                     <div class='col-md-6'>
                         {{form_row(formLocalite.ville)}}
@@ -51,7 +48,7 @@
                         {{form_row(formLocalite.region)}}
                     </div>
                 </div>
-                <div class='row' style='margin-top:2%;'>
+                <div class='row' id='margT2'>
                     <div class='col-md-6'>
                         {{form_row(formLocalite.codePostal)}}
                     </div>
@@ -60,7 +57,7 @@
                     </div>
                 </div>
                 <div class='row'>
-                    <div class='text-center' style='margin-top: 3%;'>
+                    <div class='text-center' id='margT3'>
                         <button type="submit" class="btn btn-dark">Ajouter</button>
                     </div>
                 </div>
@@ -68,7 +65,7 @@
         </div>
     </div>
     {{form_end(formLocalite)}}
-    <div class='container' style='margin-top:5%;'>
+    <div class='container' id='margT5'>
         {{ form_start(formSearch) }}
         <form>
             <div class='row'>
@@ -111,6 +108,7 @@
                         <th scope="col">Adresse</th>
                         <th scope="col">Region</th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -135,7 +133,7 @@
             </table>
         </div>
     </div>
-    <div class='d-flex justify-content-center' style='margin-top: 5%;'>
+    <div class='d-flex justify-content-center' id='margT3'>
         {{ knp_pagination_render(entreprises)}}
     </div>
 {% endblock %}

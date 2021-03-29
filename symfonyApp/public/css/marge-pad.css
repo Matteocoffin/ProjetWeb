@@ -1,0 +1,37 @@
+
+
+#margT2 {
+    margin-top:2%
+}
+
+#margT3 {
+    margin-top: 3%;
+}
+
+#margT5 {
+    margin-top: 5%;
+}
+
+#margL10 {
+    margin-left: 12.5%;
+}
+
+#margContainer {
+    margin-left:1%;
+    margin-top: 3%;
+}
+
+
+#MargFooter {
+    margin-top:31%;
+}
+
+#CadreColor {
+    padding: 1em;
+}
+
+#CadreContact {
+    padding:15px;
+    margin-top:5%;
+    border-radius: 25px;
+}
