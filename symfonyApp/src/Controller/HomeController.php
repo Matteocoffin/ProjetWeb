@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
-
 use App\Entity\Offre;
 use App\Entity\Search\OffreSearch;
-use App\Entity\Utilisateur;
 use App\Entity\WishList;
 use App\Form\ContactType;
 use App\Form\OffreSearchType;
@@ -42,24 +40,23 @@ class HomeController extends AbstractController
         $form = $this->createForm(OffreSearchType::class,$search);
         $form->handleRequest($requestSearch);
         $Offre = $paginator->paginate($this->repository->FindOffreQuery($search), $request->query->getInt('page', 1), 2);
-        return $this->render('Pages/home.php.twig', [
+        return $this->render('Pages/home.html.twig', [
             'Offre' => $Offre,
             'form' => $form->createView()
         ]);
     }
-
+//|date('d/m/Y')
     /**
      * @Route("/offre/{slug}-{id}",name="voiroffre", requirements={"slug": "[a-z0-9\-]*"})
      */
-    public function show($slug,$id,MailerInterface $mailer): Response
+    public function show($slug,$id,MailerInterface $mailer,Request $requestSearch): Response
     {
-        dump($id);
-        $requestSearch = new Request();
         $Offre = $this->repository->find($id);
         $contact = new Contact();
         $form = $this->createForm(ContactType::class,$contact);
         $form->handleRequest($requestSearch);
         if($form->isSubmitted() && $form->isValid()){
+            dump($contact->email);
             $email = (new TemplatedEmail())
                     ->from($contact->email)
                     ->to('contact@agence.fr')
@@ -68,17 +65,17 @@ class HomeController extends AbstractController
                     ->context([
                         'text' => $contact->message,
                         'stage' => $Offre->getTitre(),
-                        'datedebut' => $Offre->getDebutStage(),
-                        'datefin' => $Offre->getFinStage(),
+                        'datedebut' => ($Offre->getDebutStage())->format('d/m/Y'),
+                        'datefin' => ($Offre->getFinStage())->format('d/m/Y'),
                         'mail' => $contact->email,
                         'nom' => $contact->lastname,
                         'prenom' => $contact->firstname,
                     ]);
             $mailer->send($email);
             $this->addFlash('success', 'Votre email a bien été envoyé');
-            return $this->redirectToRoute(route: 'voiroffre');
+            return $this->redirectToRoute(route: 'home');
         }
-        return $this->render('Pages/ShowOffre.php.twig', [
+        return $this->render('Pages/ShowOffre.html.twig', [
             'offre' => $Offre,
             'form' => $form->createView()
         ]);

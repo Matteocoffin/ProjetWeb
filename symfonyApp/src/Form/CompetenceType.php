@@ -21,6 +21,7 @@ class CompetenceType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Competences::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

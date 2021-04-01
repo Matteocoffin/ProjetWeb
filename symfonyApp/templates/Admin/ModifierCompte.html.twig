@@ -1,8 +1,8 @@
 {% extends 'base.html.twig'%}
-
+{% block title %}Modifier Compte!{% endblock %}
 {% block body %}
     <div class='text-center' id='margT3'>
         <h1>Compte id {{Utilisateur.idUtilisateur}} :</h1>
     </div>
-    {{ include('admin/FormCompte.php.twig', {form: form, button:'Modifier'}) }}
+    {{ include('admin/FormCompte.html.twig', {form: form, button:'Modifier'}) }}
 {% endblock %}

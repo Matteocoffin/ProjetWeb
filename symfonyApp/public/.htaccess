@@ -5,6 +5,12 @@
 # to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
 DirectoryIndex index.php
 
+#AuthName "Page d’admin"							
+#AuthType Basic											
+#AuthUserFile "D:\Program Files (x86)\Projet\ProjetWeb\symfonyApp\public\userss"			
+#<Limit GET POST>										
+#	require valid-user									
+#</Limit>	
 
 #Order Allow,Deny
 # On autorise tout le monde à accéder au site…

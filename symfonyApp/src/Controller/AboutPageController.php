@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
-use App\Notification\ContactNotification;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +20,7 @@ class AboutPageController extends AbstractController
     */
     public function index(): Response
     {
-        return $this->render(view:'Pages/AboutPage.php.twig');
+        return $this->render(view:'Pages/AboutPage.html.twig');
     }
 
     /**

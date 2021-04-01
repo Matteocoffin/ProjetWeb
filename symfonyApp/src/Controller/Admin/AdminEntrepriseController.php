@@ -66,7 +66,7 @@ class AdminEntrepriseController extends AbstractController
             return $this->redirectToRoute(route: 'admin.entreprise');
         }
         $entreprises = $paginator->paginate($this->repository->FindEntrepriseQuery($search), $request->query->getInt('page', 1), 2);
-        return $this->render("admin/GestionEntreprise.php.twig", ['entreprises' => $entreprises, 'form'=> $form->createView(),'formSecteur'=> $formSecteur->createView(), 'formLocalite'=> $formLocalite->createView(), 'formSearch' => $formSearch->createView()]);
+        return $this->render("admin/GestionEntreprise.html.twig", ['entreprises' => $entreprises, 'form'=> $form->createView(),'formSecteur'=> $formSecteur->createView(), 'formLocalite'=> $formLocalite->createView(), 'formSearch' => $formSearch->createView()]);
     }
     /**
      * @Route("/admin/entreprise/{id}", name="admin.entreprise.edit", methods="GET|POST")
@@ -89,7 +89,7 @@ class AdminEntrepriseController extends AbstractController
             );
             return $this->redirectToRoute(route: 'admin.entreprise');
         }
-        return $this->render('admin/ModifierEntreprise.php.twig', ['entreprises' => $entreprises, 'form' => $form->createView()]);
+        return $this->render('admin/ModifierEntreprise.html.twig', ['entreprises' => $entreprises, 'form' => $form->createView()]);
      }
      /**
      * @Route("/admindel/entreprise/{id}", name="admin.entreprise.delete", methods="DELETE")

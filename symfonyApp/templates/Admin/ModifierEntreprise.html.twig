@@ -1,8 +1,8 @@
 {% extends 'base.html.twig'%}
-
+{% block title %}Modifier Entreprise!{% endblock %}
 {% block body %}
     <div class='text-center' id='margT3'>
         <h1>Entreprise id {{entreprises.idEntreprise}} :</h1>
     </div>
-    {{ include('admin/FormEntreprise.php.twig', {form: form, button:'Modifier'}) }}
+    {{ include('admin/FormEntreprise.html.twig', {form: form, button:'Modifier'}) }}
 {% endblock %}

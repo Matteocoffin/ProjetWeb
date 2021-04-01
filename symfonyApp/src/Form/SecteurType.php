@@ -21,6 +21,7 @@ class SecteurType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => SecteurDActivite::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

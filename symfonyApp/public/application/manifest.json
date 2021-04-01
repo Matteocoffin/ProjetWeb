@@ -1,7 +1,7 @@
 {
     "name":"CESI Stage",
     "short_name": "CESI",
-    "start_url": "/home",
+    "start_url": "/application/index.html",
     "display": "standalone",
     "background_color": "#FFE9D2",
     "theme_color": "#FFE1C4",

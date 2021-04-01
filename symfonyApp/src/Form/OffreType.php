@@ -30,6 +30,7 @@ class OffreType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Offre::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

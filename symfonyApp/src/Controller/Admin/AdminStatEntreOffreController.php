@@ -4,10 +4,7 @@ namespace App\Controller\Admin;
 use App\Entity\Search\OffreSearch;
 use App\Form\OffreSearchType;
 use App\Repository\OffreRepository;
-use App\Entity\Search\EtudiantSearch;
 use Knp\Component\Pager\PaginatorInterface;
-use App\Form\EtudiantSearchType;
-use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,7 +33,7 @@ class AdminStatEntreOffreController extends AbstractController
         $form = $this->createForm(OffreSearchType::class,$search);
         $form->handleRequest($requestSearch);
         $Offre = $paginator->paginate($this->repository->FindOffreQuery($search), $request->query->getInt('page', 1), 2);
-        return $this->render('Admin/StatEntreOffre.php.twig', [
+        return $this->render('Admin/StatEntreOffre.html.twig', [
             'Offre' => $Offre,
             'form' => $form->createView()
         ]);

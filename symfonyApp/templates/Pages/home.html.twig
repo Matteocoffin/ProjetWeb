@@ -1,5 +1,5 @@
 {% extends 'base.html.twig'%}
-
+{% block title %}Page d'accueil!{% endblock %}
 {% block body %}
 <div class="container">
         <div class="card w-75" id='margT5'>
@@ -15,7 +15,7 @@
     </div>
     <div class="container" id='margT5'>
         {{ form_start(form) }}
-        <form>
+        <div class="container">
             <div class='row'>
                 <div class='col-md-2'>
                     <label for="region">Choix de la région?</label>
@@ -29,13 +29,13 @@
                     <label for="Entreprise">Choix de l'entreprise?</label>
                     {{form_row(form.SearchEntreprise)}}
                 </div>
-                    <div class='col-md-3'>
+                    <div class='col-md-2'>
                         <div class='row'>
                         <label for="remuneration">Remuneration ?</label>
-                        <div class='col-md-10'>
+                        <div class='col-md-11'>
                             {{form_row(form.max)}}
                         </div>
-                        <div class='col-md-10'>
+                        <div class='col-md-11' id='margT2'>
                             {{form_row(form.min)}}
                         </div>
                         </div>
@@ -49,15 +49,15 @@
                     <button class="btn btn-dark">Filtrer</button>
                 </div>
             </div>
-        </form>
+        </div>
         {{ form_end(form) }}
-        <div class="table-responsive">
+        <div class="table-responsive" id='margT2'>
             <table class="table table-light">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Evaluation</th>
-                        <th scope="col">Company</th>
+                        <th scope="col">Entreprise</th>
                         <th scope="col">Titre</th>
                         <th scope="col">Compétences</th>
                         <th scope="col">Description</th>
@@ -71,7 +71,7 @@
                 {% for offre in Offre %}
                 <tr>
                     <th scope="row">{{offre.IdOffre}}</th>
-                    <td><a href=""><i class="far fa-heart fa-2x" data-bs-toggle="modal"></i></a></td>
+                    <td><a href="{{path('Evaluer')}}"><i class="far fa-heart fa-2x" data-bs-toggle="modal"></i></a></td>
                     <td><a href="{{path('voiroffre',{id: offre.IdOffre, slug: offre.slug})}}">{{offre.idEntreprise}}<a></td>
                     <td>{{offre.titre}}</td>
                     

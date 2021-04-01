@@ -23,6 +23,7 @@ class LocaliteType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Localite::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

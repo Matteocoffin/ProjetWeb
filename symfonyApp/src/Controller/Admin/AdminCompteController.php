@@ -45,7 +45,7 @@ class AdminCompteController extends AbstractController
         }
         $Utilisateur = $paginator->paginate($this->repository->FindUtilisateurQuery($search), $request->query->getInt('page', 1), 2);
         //dump($Utilisateur);
-        return $this->render("admin/GestionCompte.php.twig", ['Utilisateur' => $Utilisateur, 'form'=> $form->createView(),'formSearch' => $formSearch->createView()]);
+        return $this->render("admin/GestionCompte.html.twig", ['Utilisateur' => $Utilisateur, 'form'=> $form->createView(),'formSearch' => $formSearch->createView()]);
     }
 
     /**

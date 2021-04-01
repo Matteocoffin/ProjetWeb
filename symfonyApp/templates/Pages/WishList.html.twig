@@ -1,5 +1,5 @@
 {% extends 'base.html.twig'%}
-
+{% block title %}Wishlist!{% endblock %}
 {% block body %}
 {% for message in app.flashes('success') %}
 <div class="container">
@@ -17,7 +17,7 @@
             <p class="card-text">Date de début : {{wishlist.idOffre.debutStage|date('d/m/Y')}}  /  Date de fin : {{wishlist.idOffre.finStage|date('d/m/Y')}}</p>
             <p class="card-text">Rémuneration : {{wishlist.idOffre.remuneration}} /  nombre de place disponible : {{wishlist.idOffre.nbPlace}}</p>
             <p class="card-text">Description :</p>
-            <p class="card-text">{{wishlist.idOffre.Description | nl2br}}}</p>
+            <p class="card-text">{{wishlist.idOffre.Description | nl2br}}</p>
             <p class="card-text">Compétences requises : {% for d in wishlist.idOffre.idCompetences %}{{d.Competences}}/{% endfor %}</p>
             <p class="card-text">Lieu : {{wishlist.idOffre.idEntreprise.adresse}}  ({% for g in wishlist.idOffre.idEntreprise.idLocalite %}{{g.region}}/ {% endfor %})</p>
             <div class="row">

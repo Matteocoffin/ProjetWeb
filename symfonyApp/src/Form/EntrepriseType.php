@@ -41,6 +41,7 @@ class EntrepriseType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Entreprise::class,
+            'translation_domain' => 'forms'
         ]);
     }
 

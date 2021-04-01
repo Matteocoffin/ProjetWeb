@@ -37,6 +37,6 @@ class AdminStatEtudiantController extends AbstractController
         $Utilisateur = new Utilisateur();
         $Utilisateur = $paginator->paginate($this->repository->FindEtudiantQuery($search), $request->query->getInt('page', 1), 2);
         dump($Utilisateur);
-        return $this->render("admin/StatEtudiant.php.twig", ['Utilisateur' => $Utilisateur,'formSearch' => $formSearch->createView()]);
+        return $this->render("admin/StatEtudiant.html.twig", ['Utilisateur' => $Utilisateur,'formSearch' => $formSearch->createView()]);
     }
 }

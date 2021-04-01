@@ -1,5 +1,9 @@
 #Offre {
-    margin:5%;
+    margin:2%;
+    background-color: white;
+    border-radius: 30px;
+    padding:30px;
+    padding-bottom: 50px;
 }
 
 #carte{
@@ -16,3 +20,9 @@ header.page-header {
     color: #fff;
     text-shadow: #000 0 0 .2em;
 }
+
+img{
+    width: 50%;
+    height: 50%;
+}
+
